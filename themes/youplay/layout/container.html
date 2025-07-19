@@ -95,7 +95,7 @@
       <?php if (!IS_LOGGED && $pt->config->recaptcha == 'on') { ?>
       <script src="https://www.google.com/recaptcha/api.js?version={{CONFIG version}}" async defer></script>
       <?php } ?>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js?version={{CONFIG version}}"></script>
+      <script src="https://cdn.jsdmirror.com/ajax/libs/socket.io/2.0.4/socket.io.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css?version={{CONFIG version}}" />
       <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js?version={{CONFIG version}}"></script>
       <?php if (!empty($pt->config->google)) { ?>
@@ -662,7 +662,7 @@
          <source src="{{CONFIG theme_url}}/mp3/unconvinced.ogg" type="audio/ogg">
       </audio>
       <?php } ?>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js?version={{CONFIG version}}"></script>
+      <script src="//cdn.jsdmirror.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js?version={{CONFIG version}}"></script>
       <script>
          window.addEventListener("load", function(){
          window.cookieconsent.initialise({

@@ -8,7 +8,7 @@ define([
     'function/isObject'
 ],
 function(emojione, uniRegexp, emojioneVersion, readyCallbacks, emojioneSupportMode, emojioneReady, isObject) {
-    var cdn_base = "https://cdnjs.cloudflare.com/ajax/libs/emojione/";
+    var cdn_base = "https://cdn.jsdmirror.com/ajax/libs/emojione/";
     function detectVersion() {
         var version = emojione.cacheBustParam;
         if (!isObject(emojione['jsEscapeMap'])) return '1.5.2';

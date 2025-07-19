@@ -89,7 +89,7 @@
       <?php if ($pt->page == 'login' && $pt->config->recaptcha == 'on') { ?>
       <script src="https://www.google.com/recaptcha/api.js?version={{CONFIG version}}" async defer></script>
       <?php } ?>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js?version={{CONFIG version}}"></script>
+      <script src="https://cdn.jsdmirror.com/ajax/libs/socket.io/2.0.4/socket.io.js?version={{CONFIG version}}"></script>
       <?php if (!empty($pt->config->google)) { ?>
       <script>
          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -575,8 +575,8 @@
       </script>
       <?php } ?>
       <?php if ($pt->phone_api != 'yes'): ?>
-      <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css?version={{CONFIG version}}" />
-      <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js?version={{CONFIG version}}"></script>
+      <link rel="stylesheet" type="text/css" href="//cdn.jsdmirror.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css?version={{CONFIG version}}" />
+      <script src="//cdn.jsdmirror.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js?version={{CONFIG version}}"></script>
       <script>
          window.addEventListener("load", function(){
          window.cookieconsent.initialise({
