@@ -73,9 +73,9 @@
       <script src="{{CONFIG theme_url}}/player/plugins/speed/speed-i18n.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/player/plugins/jump/jump-forward.min.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/jump/jump-forward.min.css?version={{CONFIG version}}" />
-      <script src="{{CONFIG theme_url}}/player/plugins/ads/ads.min.js?version={{CONFIG version}}"></script>
-      <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/ads/ads.min.css?version={{CONFIG version}}" />
-      <script src="{{CONFIG theme_url}}/player/plugins/ads/ads-i18n.js?version={{CONFIG version}}"></script>
+      <!--<script src="{{CONFIG theme_url}}/player/plugins/ads/ads.min.js?version={{CONFIG version}}"></script>-->
+      <!--<link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/ads/ads.min.css?version={{CONFIG version}}" />-->
+      <!--<script src="{{CONFIG theme_url}}/player/plugins/ads/ads-i18n.js?version={{CONFIG version}}"></script>-->
       <script src="{{CONFIG theme_url}}/player/plugins/vast/ads-vast-vpaid.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/player/plugins/quality/quality.min.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/quality/quality.min.css?version={{CONFIG version}}" />
@@ -93,7 +93,6 @@
          <script src="{{CONFIG theme_url}}/js/highcharts/exporting.js?version={{CONFIG version}}"></script> -->
       <script src= "https://player.twitch.tv/js/embed/v1.js?version={{CONFIG version}}"></script>
       <?php if (!IS_LOGGED && $pt->config->recaptcha == 'on') { ?>
-      <script src="https://www.google.com/recaptcha/api.js?version={{CONFIG version}}" async defer></script>
       <?php } ?>
       <script src="https://cdn.jsdmirror.com/ajax/libs/socket.io/2.0.4/socket.io.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css?version={{CONFIG version}}" />
@@ -807,7 +806,7 @@
          }
          <?php if (empty($_COOKIE['r']) || !in_array(base64_decode($_COOKIE['r']), $pt->continents)) { ?>
          $.ajax({
-           url: 'https://extreme-ip-lookup.com/json/',
+           url: 'https://api.hydun.com/api/ip.php',
            type: 'GET',
            dataType: 'json'
          })
