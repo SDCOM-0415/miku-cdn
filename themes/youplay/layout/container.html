@@ -45,7 +45,6 @@
       <?php }elseif ($pt->config->player_type == 'videojs') { ?>
       <!-- <script src="http://imasdk.googleapis.com/js/sdkloader/ima3.js?version={{CONFIG version}}"></script> -->
       <link href="{{CONFIG theme_url}}/player/css/video_js/video-js.css?version={{CONFIG version}}" rel="stylesheet">
-      <link href="{{CONFIG theme_url}}/player/css/video_js/videojs-contrib-ads.min.css?version={{CONFIG version}}" rel="stylesheet">
       <link href="{{CONFIG theme_url}}/player/css/video_js/videojs-resolution-switcher.css?version={{CONFIG version}}" rel="stylesheet">
       <link href="{{CONFIG theme_url}}/player/css/video_js/videojs.ima.css?version={{CONFIG version}}" rel="stylesheet">
       <?php }elseif ($pt->config->player_type == 'plyr') { ?>
@@ -72,10 +71,6 @@
       <script src="{{CONFIG theme_url}}/player/plugins/speed/speed-i18n.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/player/plugins/jump/jump-forward.min.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/jump/jump-forward.min.css?version={{CONFIG version}}" />
-      <!--<script src="{{CONFIG theme_url}}/player/plugins/ads/ads.min.js?version={{CONFIG version}}"></script>-->
-      <!--<link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/ads/ads.min.css?version={{CONFIG version}}" />-->
-      <!--<script src="{{CONFIG theme_url}}/player/plugins/ads/ads-i18n.js?version={{CONFIG version}}"></script>-->
-      <script src="{{CONFIG theme_url}}/player/plugins/vast/ads-vast-vpaid.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/player/plugins/quality/quality.min.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/quality/quality.min.css?version={{CONFIG version}}" />
       <script src="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/renderers/facebook.min.js?version={{CONFIG version}}"></script>
@@ -212,7 +207,6 @@
       <script src="{{CONFIG theme_url}}/js/cloudinary/cloudinary-core-shrinkwrap.min.js?version={{CONFIG version}}" type="text/javascript"></script>
       <script src="{{CONFIG theme_url}}/js/cloudinary/cld-video-player.min.js?version={{CONFIG version}}" type="text/javascript"></script>
       <?php } ?>
-      <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js?version={{CONFIG version}}" type="text/javascript"></script>
       <?php if ($pt->config->live_video == 1 && !empty($pt->config->agora_app_id)) { ?>
       <script src="{{CONFIG theme_url}}/js/agora.js?version={{CONFIG version}}"></script>
       <?php } ?>
