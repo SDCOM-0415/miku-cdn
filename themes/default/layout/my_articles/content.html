@@ -1,13 +1,23 @@
-<div class="col-md-8 no-padding-right no-padding-left" style="margin-bottom: 20px;">
-	<div class="articles-content">
-		<div class="subscriptions-list author-list articles-container">
-			<h3 class="recent-articles">{{LANG my_articles}}
-				<?php if ($pt->config->all_create_articles == 'on') { ?>
-					<a href="{{LINK create_article}}" class="btn btn-main pull-right" data-load="?link1=create_article">{{LANG create_article}} </a><div class="clear"></div>
-				<?php } ?>
-			</h3>
-			<div class="row">
+<div class="container-home">
+<h3 class="recent-articles heading_all_sections_top">
+	<span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="15" height="19" viewBox="0 0 15 19">
+					  <path id="Path_30541" data-name="Path 30541" d="M14.75,5.5V3.04l4.21,4.21H16.5A1.758,1.758,0,0,1,14.75,5.5ZM16.5,8.75A3.256,3.256,0,0,1,13.25,5.5v-3H9A4.507,4.507,0,0,0,4.5,7V17A4.507,4.507,0,0,0,9,21.5h6A4.507,4.507,0,0,0,19.5,17V8.75Z" transform="translate(-4.5 -2.5)" fill="currentColor"></path>
+					</svg>
+		{{LANG my_articles}}
+	</span>
+	<?php if ($pt->config->all_create_articles == 'on') { ?>
+		<a href="{{LINK create_article}}" class="btn btn-main pull-right" data-load="?link1=create_article">{{LANG create_article}} </a>
+	<?php } ?>
+</h3>
+<div class="row">
+<div class="col-md-8">
+	<div class="box_light_black">
+		<div class="subscriptions-list author-list">
+			<div class="">
+				<div class="wrapper_articles_all">
 				{{POSTS}}
+				</div>
 			</div>
 		</div>
 		<?php if ($pt->total_pages > 1) { ?>
@@ -51,7 +61,7 @@
 		                    </li>
 		                    <?php } ?>
 		                    <li>
-		                        <a href="{{LINK my_articles?page_id=<?php echo($pt->total_pages) ?>}}" class="waves-effect" title='Last Page'>
+		                        <a href="{{LINK my_articles?page_id=<?php echo($pt->total_pages) ?>}}&last_page=1" class="waves-effect" title='Last Page'>
 		                            <i class="material-icons">last_page</i>
 		                        </a>
 		                    </li>
@@ -63,9 +73,8 @@
         <?php } ?>
 	</div>
 </div>
-<div class="col-md-4">
-	<div class="article-categories">
-		<br>
+<div class="col-md-4 ">
+	<div class="article-categories box_light_black">
 		
 		<h4>{{LANG most_popular}}</h4>
 		<div>
@@ -73,6 +82,8 @@
 			<div class="clear"></div>
 		</div>
 	</div>  
+</div>
+</div>
 </div>
 
 <script type="text/javascript">

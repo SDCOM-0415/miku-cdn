@@ -16,6 +16,11 @@
 		</div>
 		
 		<div class="row">
+			<div class="alert alert-warning">
+				<p><?php echo(str_replace('{sitename}', $pt->config->name, $lang_array['your_balance_shows'])); ?></p>
+				<p><?php echo(str_replace('{sitename}', $pt->config->name, $lang_array['your_wallet_shows'])); ?></p>
+				<p>{{LANG your_money_shows}}</p>
+			</div>
 			<div class="col-md-6">
 				<a class="pt_ads_wallet_olink" href="{{LINK wallet}}" data-load="?link1=wallet">
 					<div><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path fill="currentColor" d="M22 6h-7a6 6 0 1 0 0 12h7v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2zm-7 2h8v8h-8a4 4 0 1 1 0-8zm0 3v2h3v-2h-3z"/></svg>&nbsp;&nbsp;&nbsp;{{LANG wallet}}</div>
@@ -71,13 +76,13 @@
 		  preConfirm: function () {
 		    return new Promise(function (resolve, reject) {
 		    	amount = $(".replenish-balance-form.clone").find('input').val();
-		    	if ({{ME balance}} < 1) {
+		    	if ({{ME balance_or}} < 1) {
 		    		reject("{{LANG no_balance_to_move}}!");
 		    	}
 		    	else if (!amount || amount < 1){
 		    		reject("{{LANG please_check_details}}!");
 		    	}
-		    	else if(amount > {{ME balance}}){
+		    	else if(amount > {{ME balance_or}}){
 		    		reject("{{LANG more_than_balance}}!");
 		    	}
 		    	else{

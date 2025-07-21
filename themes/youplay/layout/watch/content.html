@@ -10,6 +10,8 @@
    <div class="row">
       <div class="<?php echo(($pt->is_wl || $pt->is_list) ? 'play-list-player' : '') ?>">
          <div class="col-md-<?php echo($pt->is_movie ? '12' : '8') ?> player-video yp_pub_elemnt <?php echo($pt->is_movie ? 'movie' : '') ?>">
+            <?php if (!$pt->shouldSubscribers) { ?>
+            <?php if ($pt->showSubscripation) { ?>
             <?php if (($pt->config->require_login == 'on' && IS_LOGGED) || $pt->config->require_login == 'off') { ?>
             <?php if ($pt->continent_hide == false) { ?>
             <?php if ((($pt->config->sell_videos_system == 'on' && $pt->get_video->sell_video > 0 && $pt->get_video->owner->subscriber_price == 0) || ($pt->get_video->sell_video == 0 && $pt->get_video->owner->subscriber_price == 0)) || ($pt->config->payed_subscribers == 'on' && ($pt->get_video->owner->subscriber_price > 0 || $pt->get_video->owner->subscriber_price == 0) ) || $pt->get_video->is_owner ) { ?>
@@ -49,6 +51,10 @@
                <?php if ($pt->converted === true && $pt->in_queue == false): ?>
                <?php if (!empty($pt->get_video->facebook)) {?>
                <div class="fb-video" data-href="https://www.facebook.com/<?php echo urldecode($pt->get_video->facebook) ?>" data-width="500" data-show-text="false"></div>
+               <?php } else if (!empty($pt->get_video->embed)) {?>
+                  <div class="pt_vdo_plyr">
+                     <div class="embed-responsive embed-responsive-16by9"><iframe width="100%" src="<?php echo $pt->get_video->video_location ?>" allowfullscreen></iframe></div>
+                  </div>
                <?php } else if (!empty($pt->get_video->ok)) {?>
                <div class="pt_vdo_plyr">
                   <div class="embed-responsive embed-responsive-16by9"><iframe width="100%" src="//ok.ru/videoembed/<?php echo $pt->get_video->ok ?>" allowfullscreen></iframe></div>
@@ -60,6 +66,10 @@
                <?php } else if (!empty($pt->get_video->daily)) { ?>
                <div class="pt_vdo_plyr">
                   <div class="embed-responsive embed-responsive-16by9"><iframe width="100%" src="//www.dailymotion.com/embed/video/{{VIDEO_ID}}?PARAMS" allowfullscreen></iframe></div>
+               </div>
+               <?php } else if (!empty($pt->get_video->youtube) && $pt->config->youtube_player == 'on') { ?>
+               <div class="pt_vdo_plyr">
+                  <div class="embed-responsive embed-responsive-16by9"><iframe width="100%" src="https://www.youtube.com/embed/<?php echo($pt->get_video->youtube); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                </div>
                <?php } else if (!empty($pt->get_video->twitch)) {
                   if ($pt->get_video->twitch_type != 'streams') {
@@ -420,6 +430,43 @@
                </div>
             </div>
             <?php } ?>
+            <?php }else{ ?>
+            <div class="video-processing">
+               <img src="{{THUMBNAIL}}" alt="" style="width: 100%;">
+               <div>
+                  <h5>
+                     <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                           <line x1="18" y1="6" x2="6" y2="18"></line>
+                           <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                     </p>
+                     <p>{{LANG requires_subscription}}</p>
+                     <?php if (IS_LOGGED) { ?>
+                        <button class="btn btn-main" onselectstart="return false" onclick="location.href = site_url+'/go_pro';">{{LANG go_pro}}</button>
+                     <?php }else{ ?>
+                        <button class="btn btn-main" onselectstart="return false" onclick="location.href = site_url+'/login';">{{LANG login}}/{{LANG register}}</button>
+                     <?php } ?>
+                  </h5>
+               </div>
+            </div>
+            <?php }}else{ ?>
+               <div class="video-processing">
+                  <img src="{{THUMBNAIL}}" alt="" style="width: 100%;">
+                  <div>
+                     <h5>
+                        <p>
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                              <line x1="18" y1="6" x2="6" y2="18"></line>
+                              <line x1="6" y1="6" x2="18" y2="18"></line>
+                           </svg>
+                        </p>
+                        <p>{{LANG please_subscribe_to_watch}}</p>
+                        {{SUBSCIBE_BUTTON}}
+                     </h5>
+                  </div>
+               </div>
+            <?php } ?>
             <div class="clear"></div>
          </div>
          <?php if (!$pt->is_movie) { ?>
@@ -651,9 +698,9 @@
             </div>
             <div class="publisher-name">
                <a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}">{{USER name_v}}</a><br>
-               <span>{{SUBS}} {{LANG subscribers}}</span>
+               <?php if ($pt->get_video->owner->privacy->show_subscriptions_count == 'yes') { ?><span>{{SUBS}} {{LANG subscribers}}</span><?php } ?>
             </div>
-            <div class="publisher-subscribe-button">{{SUBSCIBE_BUTTON}}</div>
+            <div class="publisher-subscribe-button">{{NOTIFY_BUTTON}}{{SUBSCIBE_BUTTON}}</div>
             <div class="clear"></div>
          </div>
          <div class="clear"></div>
@@ -802,7 +849,7 @@
                         </div>
                         <div class="publisher-name">
                            <a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}">{{USER name_v}}</a><br>
-                           <span>{{SUBS}} {{LANG subscribers}}</span>
+                           <?php if ($pt->get_video->owner->privacy->show_subscriptions_count == 'yes') { ?><span>{{SUBS}} {{LANG subscribers}}</span><?php } ?>
                         </div>
                         <div class="publisher-subscribe-button">
                            <?php if (!empty($pt->get_video->demo) && PT_GetMedia($pt->get_video->demo) == $pt->get_video->video_location) { ?>
@@ -1099,18 +1146,18 @@
    .mejs__fullscreen .play-list-player .mejs__container {
    max-height: 100% !important;
    }
-   .play-list-player .mejs__container {
+   /*.play-list-player .mejs__container {
    max-height: 555px !important;
-   }
+   }*/
    .mejs__fullscreen .play-list-player video {
    max-height: 100% !important;
    }
    .play-list-player .vjs-fullscreen video {
    max-height: 100% !important;
    }
-   .play-list-player video {
+   /*.play-list-player video {
    max-height: 555px !important;
-   }
+   }*/
    .fluid_video_wrapper.fluid_player_layout_default:-webkit-full-screen video{max-height: 100% !important;}
    /*.play-list-player{
    max-height: 640px !important;
@@ -1126,12 +1173,13 @@
    $.getScript('{{CONFIG theme_url}}/js/Sortable.min.js', function(data, textStatus) {
       var el = document.getElementById('next-video');
       var sortable = Sortable.create(el,{
+         delay: 100,
          onEnd: function (/**Event*/evt) {
             var video_array = [];
             $('[data-litsitem-id]').each(function(i, obj) {
                video_array[i] = $(obj).attr('data-video-id');
                if (i == $('[data-litsitem-id]').length-1) {
-                  $.post('{{LINK aj/lists?type=list&a=sort}}', {video_array: video_array,type:'wl'}, function(data, textStatus, xhr) {});
+                  $.post('{{LINK aj/lists?type=list&a=sort}}', {video_array: video_array,type: "<?php echo($pt->is_list ? 'list' : 'wl') ?>"}, function(data, textStatus, xhr) {});
                }
             });
          }
@@ -1184,6 +1232,11 @@
 <?php } ?>
 <script type="text/javascript">
    jQuery(document).ready(function($) {
+      <?php if ($pt->shouldSubscribers) { ?>
+      $(".subscribe-id-<?php echo($pt->get_video->owner->id) ?>").on('click',() => {
+         window.location.reload();
+      });
+      <?php } ?>
         const video = document.querySelector('video');
         video.addEventListener('timeupdate', (event) => {
            end_time = parseInt((video.duration * 99) / 100);
@@ -2395,9 +2448,9 @@
    .mejs__fullscreen .mejs__container {
    max-height: 100% !important;
    }
-   .mejs__container {
+   /*.mejs__container {
    max-height: 555px !important;
-   }
+   }*/
    .mejs__fullscreen video {
    max-height: 100% !important;
    }
@@ -2405,9 +2458,9 @@
    max-height: 100% !important;
    }
    .fluid_video_wrapper.fluid_player_layout_default:-webkit-full-screen video{max-height: 100% !important;}
-   video {
+   /*video {
    max-height: 555px !important;
-   }
+   }*/
    .mejs__offscreen {
    clip: initial !important;
    clip-path: inherit !important;

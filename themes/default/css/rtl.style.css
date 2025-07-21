@@ -4,16 +4,17 @@ div.dataTables_wrapper div.dataTables_filter {
 }
 .announcement-renderer {
 	left: auto;
-	right: 30px;
+	right: 110px;
+}
+body.side_open .announcement-renderer {
+    left: auto;
+	right: 310px;
 }
 .pull-right {
     float: left !important;
 }
 .pull-left {
     float: right !important;
-}
-.articles-content .pt_article_h_list .video-thumb {
-	margin: 0 0 20px 24px;
 }
 .article-categories div form input {
 	padding-right: 12px;
@@ -173,9 +174,9 @@ header .upload-button {
 .user-messages .messages .message .user-avatar {
 	float: right;
 }
-.play-lists div.video-latest-list div.play-lists-count {
-	right: auto;
-	left: 0;
+.dddown-menu {
+    right: auto;
+    left: 0;
 }
 .ddown-menu div.dropdown ul.dropdown-menu {
 	right: auto;
@@ -280,20 +281,6 @@ header .upload-button, header .import-button, header .live-button {
 header .upload-button svg, header .import-button svg, header .live-button svg {
     margin: -3px 1px 0 2px !important;
 }
-.yp_side_menu.has_side_menu {
-    margin-left: 0;
-    margin-right: 75px;
-}
-.yp_side_drawer {
-    left: auto;right: 0;
-}
-body.side_open .yp_side_drawer ul.sections li a svg, body.side_open .yp_side_drawer .subscribers_ img {
-    margin-right: 0;margin-left: 27px;
-}
-body.side_open .yp_side_drawer ul.sections li a {
-    padding-left: 17px;
-    padding-right: 25px;
-}
 .pl_feat_vid_slider .owl-dots {
     text-align: right !important;
 }
@@ -319,10 +306,12 @@ nav.navbar-findcond .logo-img {
     margin: -5px -15px 0 20px;
 }
 nav.navbar-findcond .search-header svg.feather {
-    left: auto;right: 0px;
+        left: 0px;
+    right: auto;
 }
 nav.navbar-findcond .search-header input {
-    padding-left: 12px;padding-right: 35px;
+    padding-left: 12px;
+    padding-right: 15px;
 }
 nav.navbar-findcond .dropdown-menu.ani-acc-menu > li > a img, nav.navbar-findcond .dropdown-menu.ani-acc-menu > li > a svg {
     margin: 0 0 0 12px;
@@ -363,11 +352,6 @@ nav.navbar-findcond .dropdown-menu.ani-acc-menu > li > a img, nav.navbar-findcon
 .yp_side_menu.has_side_menu {
 	margin: 0;
 }
-.yp_side_drawer {
-	width: 250px;
-    transition: all 0.3s;
-	right: -250px;
-}
 .yp_side_drawer ul.sections li a {
     font-size: 1.4rem;justify-content: normal;padding-right: 25px;
 }
@@ -376,10 +360,6 @@ nav.navbar-findcond .dropdown-menu.ani-acc-menu > li > a img, nav.navbar-findcon
 }
 .yp_side_drawer .subscribers_ img {
 	margin-left: 27px;
-}
-body.side_open .yp_side_drawer {
-	right: 0;
-	z-index: 9;
 }
 }
 .pt_language_select li a {
@@ -534,4 +514,160 @@ body .pt_sec_nav_slide_prnt .swiper-button-prev {
 
 .lang_select_modal ul{
 	padding: 20px 0 20px 20px;
+}
+
+.new_left_right .left_menu {
+    float: right;
+    left: auto;
+    right: 0;
+}
+.new_left_right .content_main_wrapper {
+    margin-left: 0 !important;
+    margin-right: 280px !important;
+}
+.content_main_wrapper .navbar-fixed-bottom, .navbar-fixed-top {
+    right: auto;left: 0;
+}
+
+@media (min-width: 1300px) {
+.yp_slide_menu {
+    left: auto;
+    right: 0;
+}
+.top_logo {
+    padding-left: 0;
+    padding-right: 70px;
+}
+}
+
+nav.navbar-findcond .search-header {
+    margin-left: 11px;
+    margin-right: auto;
+}
+.search_line {
+    right: auto;
+    left: 36px;
+}
+.profile-nav span {
+    margin-left: 0;
+    margin-right: 10px;
+}
+.icon_pro {
+    right: auto;
+    left: 93px;
+}
+ul.notfi-dropdown ul#notifications-list li div.avatar {
+    float: right;
+    margin-left: 10px;
+}
+.yp_side_drawer ul.sections li a span {
+    margin-left: 0;
+    margin-right: 8px;
+}
+.menu_static_text {
+    text-align: right;
+}
+.menu_static_text {
+    margin-left: 0;
+    margin-right: 24px;
+}
+.top_static {
+    margin-left: 0;
+    margin-right: 15px;
+}
+.feature_wrap p {
+    text-align: right;
+}
+.explore_more, .slick-arrow {
+    right: auto;
+    left: 0;transform: scale(-1);
+}
+.explore_more.prev {
+    left: auto;
+    right: 0;
+}
+.video_channel_details .image_channel {
+    margin-right: 0;
+    margin-left: 10px;
+}
+.arrow_read {
+    right: auto;
+    left: 12px;
+    transform: scale(-1);
+}
+body.side_open .new_left_right .content_main_wrapper {
+    margin-left: 0 !important;
+    margin-right: 80px !important;
+}
+
+@media (max-width: 1300px) {
+.new_left_right .content_main_wrapper {
+    margin: 0 !important;
+}
+.new_left_right .left_menu {
+    left: auto;right: -280px;
+}
+body.side_open .new_left_right .content_main_wrapper {
+    margin: 0 !important;
+}
+body.mobi_side_open .new_left_right .left_menu {
+    left: auto;
+    right: 0;
+}
+}
+
+.histor_bg .video-actions {
+    right: auto;left: 0;
+}
+.width_right_section {
+    float: left;
+}
+.popular-articles-wrapper .name_artcile, .popular-articles-wrapper .name_artcile_views, .custom_pt_about h5, .custom_pt_about h5 span, .pt_video_info .watch-video-description p, .pt_video_comments .comments-header {
+    text-align: right;
+}
+.artcile_owner_custom {
+    right: auto;
+    left: 0;
+}
+.full_text_article_custom {
+    text-align: right;
+}
+.read-article-meta_custom .count svg {
+    margin-right: 0;
+    margin-left: 7px;
+}
+.custom_pt_about h5 span {
+    float: right;
+}
+.user-comments .main-comment .user-comment .div-vote-comment {
+    float: right;
+}
+.right_count_view div span, .right_count_view a span {
+    margin-left: 0;
+    margin-right: 7px;
+}
+.sort-comments-dropdown {
+    margin-left: 0;
+    margin-right: 40px;
+}
+.button_smiles {
+    float: left;
+}
+.settings-sidebar ul li a svg {
+    margin: -1px 0 0 18px;
+}
+.setting_right_heading, .box_light_black_pad h1 {
+    text-align: right;
+}
+.pt_forms .setting-panel-mdbtn, .setting-panel-mdbtn_custom {
+    right: auto;
+    left: 35px;
+}
+.tgl + .tgl-btn:after {
+    left: auto;
+    right: -3px;
+}
+.tgl:checked + .tgl-btn:after {
+    left: auto;
+    right: 54%;
 }

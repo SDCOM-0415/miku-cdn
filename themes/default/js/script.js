@@ -374,6 +374,22 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
     }
 })
 
+function number_format(number, decimals = 0, decimalSeparator = '.', thousandSeparator = ',') {
+  // Convert the number to a float and round it to the specified number of decimals
+  const roundedNumber = parseFloat(number.toFixed(decimals));
+
+  // Split the number into its integer and fractional parts
+  const [integerPart, fractionalPart] = roundedNumber.toString().split('.');
+
+  // Add thousand separators to the integer part
+  const integerWithSeparators = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, thousandSeparator);
+
+  // Combine the integer and fractional parts with the decimal separator
+  const formattedNumber = fractionalPart ? `${integerWithSeparators}${decimalSeparator}${fractionalPart}` : integerWithSeparators;
+
+  return formattedNumber;
+}
+
 
 
 

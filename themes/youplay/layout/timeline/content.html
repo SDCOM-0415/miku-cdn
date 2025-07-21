@@ -6,9 +6,11 @@
 				<?php if ($pt->isowner == true) { ?>
 					<div class="edit-cover-container hidde">
 						<a href="{{LINK settings/avatar}}" data-load="?link1=settings&page=avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4,4H7L9,2H15L17,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M12,7A5,5 0 0,0 7,12A5,5 0 0,0 12,17A5,5 0 0,0 17,12A5,5 0 0,0 12,7M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z" /></svg></a>
+						<?php if ($pt->profile_user->ex_cover != 'upload/photos/d-cover.jpg') { ?>
 						<span class="btn btn-upload-image btn-file" onclick="PT_StartRepositioner();">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21,15H23V17H21V15M21,11H23V13H21V11M23,19H21V21C22,21 23,20 23,19M13,3H15V5H13V3M21,7H23V9H21V7M21,3V5H23C23,4 22,3 21,3M1,7H3V9H1V7M17,3H19V5H17V3M17,19H19V21H17V19M3,3C2,3 1,4 1,5H3V3M9,3H11V5H9V3M5,3H7V5H5V3M1,11V19A2,2 0 0,0 3,21H15V11H1M3,19L5.5,15.79L7.29,17.94L9.79,14.72L13,19H3Z" /></svg>
 						</span>
+						<?php } ?>
 					</div>
 				<?php } ?>
 			</div>
@@ -40,10 +42,20 @@
 							<a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}"><img src="{{USER avatar}}" alt="{{USER name}}"></a>
 						</div>
 						<div class="info-container">
-							<h4><a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}">{{USER name_v}} </a></h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>{{SUBS}} {{LANG subscribers}}</p>
+							<h4><a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}">{{USER name_v}} <?php if ($pt->profile_user->is_pro > 0 && !empty($pt->pro_packages[$pt->profile_user->pro_type])) { ?>
+				<span class="icon_pro">
+					<svg xmlns="http://www.w3.org/2000/svg" width="42" height="20" viewBox="0 0 42 20">
+					  <g id="pro" transform="translate(-1739 -2240)">
+					    <rect id="bg" width="42" height="20" rx="8" transform="translate(1739 2240)" fill="#3f90cf"/>
+					    <text id="PRO-2" data-name="PRO" transform="translate(1760.053 2254.134)" fill="#fff" font-size="12" font-weight="500"><tspan x="-11" y="0">PRO</tspan></text>
+					  </g>
+					</svg>
+				</span>
+				<?php } ?></a></h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php if ($pt->profile_user->privacy->show_subscriptions_count == 'yes') { ?>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<p>{{SUBS}} {{LANG subscribers}}</p><?php } ?>
 						</div>
 					</div>
 					<div class="subscribe-btn-container">
+						<div>{{NOTIFY_BUTTON}}</div>
 						<div>{{BLOCK_BUTTON}}</div>
 						<div>{{MESSAGE_BUTTON}}</div>
 						<div>{{SUBSCIBE_BUTTON}}</div>

@@ -224,7 +224,7 @@ overflow: unset !important;
 	<body>
 		<header>
 			<a class="brand header-brand" href="<?php echo $sh->config->site_url; ?>">
-				<img width="130" src="{{CONFIG theme_url}}/img/logo.png" alt="{{CONFIG title}}">
+				<img width="130" src="{{CONFIG theme_url}}/img/logo.png?cache=<?php echo($pt->config->logo_cache) ?>" alt="{{CONFIG title}}">
 			</a>
 		</header>
 		<div class="container">
@@ -341,7 +341,7 @@ overflow: unset !important;
 				<?php } ?>
 				<?php if (!empty($pt->user_info->setting->donation_paypal_email)) { ?>
 					<tr>
-						<td>PayPal E-mail</td>
+						<td>{{LANG paypal_email}}</td>
 						<td><?php echo $pt->user_info->setting->donation_paypal_email; ?></td>
 					</tr>
 				<?php } ?>

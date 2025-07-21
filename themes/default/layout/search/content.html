@@ -1,68 +1,72 @@
-<div class="content pt_shadow">
-	<div class="col-md-12">
-		<div class="upload-head">
-			<h4><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> {{LANG search_results}}: {{KEYWORD}}<span class="pull-right" onclick="show_search_filter()" id="search_filter"><svg class="feather filter_icon pointer" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" ><g class="style-scope yt-icon">
-        <path d="M0 0h24v24H0z" fill="none" class="style-scope yt-icon"></path>
-        <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" class="style-scope yt-icon"></path>
-      </g></svg></span></h4>
-      <div class="vid_srch_filtr" id="filter_settings" style="display: <?php echo (empty($_POST['date']) && empty($_POST['category'])) ? 'none': 'block'?>;">
-      	<form class="search_filter_form row pt_forms" method="POST" action="{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?><?php echo(!empty($pt->page_number) ? '&page_id='.$pt->page_number : '') ?>">
-	      	<div class="form-group col-lg-4">
-				<label class="col-md-12 bold" for="type">{{LANG upload_date}}</label>
-				<div class="col-md-12">
-					<div>
-						<label for="date_last_hour">
-						<input onchange="ChangePage()" type="radio" name="date" id="date_last_hour" value="last_hour" <?php echo (isset($_POST['date']) && $_POST['date'] == 'last_hour') ? 'checked': ''?>>
-						<span>{{LANG last_hour}}</span>
-						</label>
-					</div>
-					<div>
-						<label for="date_today">
-						<input onchange="ChangePage()" type="radio" name="date" id="date_today" value="today" <?php echo (isset($_POST['date']) && $_POST['date'] == 'today') ? 'checked': ''?>>
-						<span>{{LANG today}}</span>
-						</label>
-					</div>
-					<div>
-						<label for="date_this_week">
-						<input onchange="ChangePage()" type="radio" name="date" id="date_this_week" value="this_week" <?php echo (isset($_POST['date']) && $_POST['date'] == 'this_week') ? 'checked': ''?>>
-						<span>{{LANG this_week}}</span>
-						</label>
-					</div>
-					<div>
-						<label for="date_this_month">
-						<input onchange="ChangePage()" type="radio" name="date" id="date_this_month" value="this_month" <?php echo (isset($_POST['date']) && $_POST['date'] == 'this_month') ? 'checked': ''?>>
-						<span>{{LANG this_month}}</span>
-						</label>
-					</div>
-					<div>
-						<label for="date_this_year">
-						<input onchange="ChangePage()" type="radio" name="date" id="date_this_year" value="this_year" <?php echo (isset($_POST['date']) && $_POST['date'] == 'this_year') ? 'checked': ''?>>
-						<span>{{LANG this_year}}</span>
-						</label>
-					</div>
-				</div>
-			</div>
-			<div class="form-group col-lg-8">
-				<label class="col-md-12 bold" for="type">{{LANG categories}}</label>
-				<div class="col-md-12">
-					<?php foreach($pt->categories as $key => $category) { ?>
-					    <div class="col-md-4 no-padding-left">
-							<label for="category_<?php echo $key; ?>">
-							<input onchange="ChangePage()" type="checkbox" name="category[]" id="category_<?php echo $key; ?>" value="<?php echo $key; ?>" <?php echo (isset($_POST['category']) && in_array($key, $_POST['category'])) ? 'checked': ''?>>
-							<span><?php echo $category; ?></span>
+<div class="container-home">
+	<h3 class="recent-articles heading_all_sections_top search">
+		<span>
+			<svg class="feather feather-search" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g id="Group_304" data-name="Group 304" transform="translate(941 2420)"><g id="Search_1" data-name="Search 1" transform="translate(-939.756 -2417.756)"><path id="Path_57" data-name="Path 57" d="M2,7.752A6.752,6.752,0,1,1,8.752,14.5,6.752,6.752,0,0,1,2,7.752ZM7.971,3.209a.563.563,0,0,1-.468.644A3.189,3.189,0,0,0,4.853,6.5a.563.563,0,0,1-1.112-.176A4.314,4.314,0,0,1,7.327,2.741.563.563,0,0,1,7.971,3.209Z" fill="currentColor" fill-rule="evenodd"></path><path id="Path_58" data-name="Path 58" d="M18.47,17.47a.75.75,0,0,1,1.061,0l4,4A.75.75,0,1,1,22.47,22.53l-4-4A.75.75,0,0,1,18.47,17.47Z" transform="translate(-4.238 -4.238)" fill="currentColor"></path></g><rect id="Rectangle_321" data-name="Rectangle 321" width="24" height="24" transform="translate(-941 -2420)" fill="none"></rect></g></svg>
+			<span>{{LANG search_results}}: {{KEYWORD}}</span>
+		</span>
+		<span onclick="show_search_filter()" id="search_filter" class="btn btn-main">{{LANG filter_by}}</span>
+	</h3>
+	
+	<div class="vid_srch_filtr" id="filter_settings" style="display: <?php echo (empty($_POST['date']) && empty($_POST['category'])) ? 'none': 'block'?>;">
+		<div class="upload_video_bg_color">
+			<form class="search_filter_form row pt_forms" method="POST" action="{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?><?php echo(!empty($pt->page_number) ? '&page_id='.$pt->page_number : '') ?>">
+				<div class="form-group col-lg-4">
+					<label class="col-md-12 bold" for="type">{{LANG upload_date}}</label>
+					<div class="col-md-12">
+						<div>
+							<label for="date_last_hour">
+							<input onchange="ChangePage()" type="radio" name="date" id="date_last_hour" value="last_hour" <?php echo (isset($_POST['date']) && $_POST['date'] == 'last_hour') ? 'checked': ''?>>
+							<span>{{LANG last_hour}}</span>
 							</label>
 						</div>
-					<?php } ?>
+						<div>
+							<label for="date_today">
+							<input onchange="ChangePage()" type="radio" name="date" id="date_today" value="today" <?php echo (isset($_POST['date']) && $_POST['date'] == 'today') ? 'checked': ''?>>
+							<span>{{LANG today}}</span>
+							</label>
+						</div>
+						<div>
+							<label for="date_this_week">
+							<input onchange="ChangePage()" type="radio" name="date" id="date_this_week" value="this_week" <?php echo (isset($_POST['date']) && $_POST['date'] == 'this_week') ? 'checked': ''?>>
+							<span>{{LANG this_week}}</span>
+							</label>
+						</div>
+						<div>
+							<label for="date_this_month">
+							<input onchange="ChangePage()" type="radio" name="date" id="date_this_month" value="this_month" <?php echo (isset($_POST['date']) && $_POST['date'] == 'this_month') ? 'checked': ''?>>
+							<span>{{LANG this_month}}</span>
+							</label>
+						</div>
+						<div>
+							<label for="date_this_year">
+							<input onchange="ChangePage()" type="radio" name="date" id="date_this_year" value="this_year" <?php echo (isset($_POST['date']) && $_POST['date'] == 'this_year') ? 'checked': ''?>>
+							<span>{{LANG this_year}}</span>
+							</label>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="clear"></div>
-			<div class="last-sett-btn modal-footer" style="margin: 0px 0 -7px">
-				<button id="submit" name="submit" class="btn btn-main setting-panel-mdbtn">{{LANG search}}</button>
-			</div>
-		</form>
-      </div>
-			<hr>
+				<div class="form-group col-lg-8">
+					<label class="col-md-12 bold" for="type">{{LANG categories}}</label>
+					<div class="col-md-12">
+						<?php foreach($pt->categories as $key => $category) { ?>
+							<div class="col-md-4 no-padding-left">
+								<label for="category_<?php echo $key; ?>">
+								<input onchange="ChangePage()" type="checkbox" name="category[]" id="category_<?php echo $key; ?>" value="<?php echo $key; ?>" <?php echo (isset($_POST['category']) && in_array($key, $_POST['category'])) ? 'checked': ''?>>
+								<span><?php echo $category; ?></span>
+								</label>
+							</div>
+						<?php } ?>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="last-sett-btn modal-footer">
+					<button id="submit" name="submit" class="btn btn-main">{{LANG search}}</button>
+				</div>
+			</form>
 		</div>
+	</div>
+
+	<div class="upload_video_bg_color">
 		<div class="videos-latest-list row">
       		{{VIDEOS}}
 		</div>
@@ -107,7 +111,7 @@
 		                    </li>
 		                    <?php } ?>
 		                    <li>
-		                        <a href="javascript:void(0)" onclick="GoToPage(<?php echo($pt->total_pages) ?>)" class="waves-effect" title='Last Page'>
+		                        <a href="javascript:void(0)" onclick="GoToPage(<?php echo($pt->total_pages) ?>,'&last_page=1')" class="waves-effect" title='Last Page'>
 		                            <i class="material-icons">last_page</i>
 		                        </a>
 		                    </li>
@@ -125,29 +129,26 @@
 		<div class="clear"></div>
 	</div>
 	
-	<div class="clear"></div>
-</div>
-<?php if (!empty($pt->users )) { ?>
-<div class="content pt_shadow">
-	<div class="col-md-12">
-		<div class="upload-head">
-			<h4><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> {{LANG channels}}</h4>
-			<hr>
+	<?php if (!empty($pt->users )) { ?>
+		<div class="upload_video_bg_color">
+			<div class="upload-head">
+				<h4><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> {{LANG channels}}</h4>
+				<hr>
+			</div>
+			<div class=" row">
+				{{USERS}}
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class=" row">
-      		{{USERS}}
-		</div>
-		<div class="clear"></div>
-	</div>
-	<div class="clear"></div>
+	<?php } ?>
 </div>
-<?php } ?>
+
 <script type="text/javascript">
 	function ChangePage() {
 		$('.search_filter_form').attr('action', "{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?>&page_id=1");
 	}
-	function GoToPage(page_id) {
-		$('.search_filter_form').attr('action', "{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?>&page_id="+page_id);
+	function GoToPage(page_id,last='') {
+		$('.search_filter_form').attr('action', "{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?>&page_id="+page_id+last);
 		$('#submit').click();
 	}
 

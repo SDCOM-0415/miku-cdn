@@ -56,7 +56,7 @@
                 </select>
             </div>
         </div>
-        <?php if ($pt->config->donate_system == 'on') { ?>
+        <?php if ($pt->config->donate_system == 'on' && canUseFeature($pt->settings->id,'who_can_donate')) { ?>
          <!-- Text input-->
         <div class="form-group col-lg-6">
             <label class="col-md-12" for="donation_paypal_email">{{LANG donation_paypal_email}}</label>
@@ -91,7 +91,7 @@
         form.ajaxForm({
             url: '{{LINK aj/user/general}}?hash=' + $('.main_session').val(),
             beforeSend: function() {
-                $('.last-sett-btn').find('button').text("{{LANG please_wait}}");
+                $('#general-settings').find('button').text("{{LANG please_wait}}");
                 // FL_progressIconLoader(form.find('button'));
             },
             success: function(data) {
@@ -166,7 +166,7 @@
                     $('.setting-general-alert').html('<div class="alert alert-danger">' + errors + '</div>');
                     $('.alert-danger').fadeIn(300);
                 }
-                $('.last-sett-btn').find('button').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> {{LANG save}}');
+                $('#general-settings').find('button').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> {{LANG save}}');
                 // FL_progressIconLoader(form.find('button'));
             }
         });

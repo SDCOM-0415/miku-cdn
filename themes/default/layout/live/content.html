@@ -1,20 +1,52 @@
-<style>body {padding-top: 57px !important;background: black !important;}footer {display: none;}</style>
+<div class="container-home">
+<div class="end_video_call">
+<a class="btn btn-danger end_vdo_call wow_end_live_btn hidden" href="{{LINK }}" onclick="DeleteLive()">{{LANG end_live}}</a>
+</div>
+
+<div class="box_light_black">
+    <div class="width-100">
+      <div class="header_live">
+          <div class="text_live">
+            {{LANG live_ettings}}
+          </div>
+          <div class="right_live_buttons">
+            <div class="live_counter">
+              <span id="live_word">{{LANG live}}</span> 
+              <span id="live_count">0</span>
+            </div>
+
+
+            
+            
+            <button class="btn button_go_live wow_go_live_btn hidden" id="publishBtn">{{LANG go_live}}</button>
+
+          </div>
+      </div>
+
+
+      <div class="text_input_live">
+        <label>
+          {{LANG video_title}}
+        </label>
+        <input type="text" id="live_video_name" placeholder="{{LANG video_title}}" class="">
+      </div>
+
+    </div>
+
+
+<style>body {padding-top: 0px !important;}footer {display: none;}</style>
 <div class="video-con wow_go_live_cont">
-	<div class="containerr">
+	<div class="containerr custom_container_live">
 		<div id="remote-media">
 			<div class="liv_vid_cont" id="main_live_video"></div>
 			<h3><i class="fa fa-spin fa-spinner"></i> {{LANG please_wait}}</h3>
-			<div class="wow_liv_counter"><span id="live_word">{{LANG live}}</span> <span id="live_count"> 0</span></div>
+			<!-- <div class="wow_liv_counter"><span id="live_word">{{LANG live}}</span> <span id="live_count"> 0</span></div> -->
 			<div id="live_post_comments" class="wow_liv_comments_feed user-comments"></div>
 		</div>
 		
-		<input type="text" id="live_video_name" placeholder="{{LANG video_title}}" class="start_vdo_call">
 		
-		<a class="btn btn-danger end_vdo_call wow_end_live_btn hidden" href="{{LINK }}" onclick="DeleteLive()">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" /></svg>&nbsp;{{LANG end_live}}
-		</a>
-    
-		<button class="btn btn-success start_vdo_call wow_go_live_btn hidden" id="publishBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17,14.5V11A1,1 0 0,0 16,10H4A1,1 0 0,0 3,11V21A1,1 0 0,0 4,22H16A1,1 0 0,0 17,21V17.5L21,21.5V10.5M3,3.86L4.4,5.24C7.5,2.19 12.5,2.19 15.6,5.24L17,3.86C13.14,0.05 6.87,0.05 3,3.86M5.8,6.62L7.2,8C8.75,6.5 11.25,6.5 12.8,8L14.2,6.62C11.88,4.34 8.12,4.34 5.8,6.62Z" /></svg>&nbsp;{{LANG go_live}}</button>
+		
+		
 		<?php if ($pt->config->live_video == 1 && !empty($pt->config->agora_app_id)) { ?>
 			<div class="live_mic_cam_switch" style="display: none;">
 				<div class="dropdown mic_drop">
@@ -39,10 +71,15 @@
 	</div>
 	<input type="hidden" id="live_post_id">
 </div>
+</div>
+</div>
 <?php if ($pt->config->live_video == 1 && !empty($pt->config->agora_app_id)) {
   echo PT_LoadPage('live/agora');
 } ?>
 <script type="text/javascript">
+  <?php if ($pt->config->live_video == 1 && $pt->config->amazone_s3_2 == 1 && $pt->config->live_video_save != 1) { ?>
+    console.error("Creating a live stream that cloud recording is not enabled.");
+  <?php } ?>
   <?php //if ($pt->config->live_chat == 'on') { ?>
   function LiveChating(type) {
     post_id = $('#live_post_id').val();

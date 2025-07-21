@@ -1,20 +1,27 @@
 <style>
-.pt_footer {display: none;}
 body {overflow: hidden;}
 .container {width: 100%;padding: 0;}
+  body .swiper {
+  	   margin: -25px -10px 0;
+    width: calc(100% + 30px);
+    height: calc(100vh - 65px);
+    height: calc(var(--vh, 1vh) * 100 - 65px);
+  }
 </style>
 <div class="roww">
 	<div class="col-md-3w"></div>
 	<div class="col-md-6w">
-		<h4 class="pt_main_chnl_content_title pt_shorts_page_title">
-			<span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 168.071 168.071" xml:space="preserve"> <g> <g> <path opacity="0.5" style="fill: currentColor;" d="M154.932,91.819L42.473,27.483c-2.219-1.26-4.93-1.26-7.121-0.027 c-2.219,1.233-3.588,3.533-3.615,6.026L31.08,161.059c0,0,0,0,0,0.027c0,2.465,1.369,4.766,3.533,6.026 c1.123,0.63,2.355,0.959,3.615,0.959c1.205,0,2.438-0.301,3.533-0.931l113.116-63.214c2.219-1.26,3.588-3.533,3.588-6.053 c0,0,0,0,0-0.027C158.465,95.38,157.123,93.079,154.932,91.819z"></path> <g id="XMLID_15_"> <g> <path style="fill:currentColor;" d="M79.952,44.888L79.952,44.888c3.273-3.273,2.539-8.762-1.479-11.06l-7.288-4.171 c-2.75-1.572-6.212-1.109-8.452,1.128l0,0c-3.273,3.273-2.539,8.762,1.479,11.06l7.291,4.169 C74.25,47.589,77.712,47.126,79.952,44.888z"></path> <path style="fill:currentColor;" d="M133.459,65.285L99.103,45.631c-2.75-1.572-6.209-1.109-8.449,1.128l0,0 c-3.273,3.273-2.539,8.759,1.479,11.057l23.497,13.44L23.931,122.5l0.52-103.393l19.172,10.964 c2.722,1.558,6.152,1.098,8.367-1.12l0.104-0.104c3.24-3.24,2.514-8.674-1.463-10.95L21,0.948 c-2.219-1.26-4.93-1.26-7.121-0.027c-2.219,1.233-3.588,3.533-3.615,6.026L9.607,134.524c0,0,0,0,0,0.027 c0,2.465,1.369,4.766,3.533,6.026c1.123,0.63,2.355,0.959,3.615,0.959c1.205,0,2.438-0.301,3.533-0.931l113.116-63.214 c2.219-1.26,3.588-3.533,3.588-6.053c0,0,0,0,0-0.027C136.992,68.845,135.65,66.545,133.459,65.285z"></path> </g> </g> </g> </g></svg> {{LANG shorts}}</span>
+		<div class="" style="position:relative;">
+			<h4 class="pt_main_chnl_content_title pt_shorts_page_title">
+				<span><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 168.071 168.071" xml:space="preserve"> <g> <g> <path opacity="0.5" style="fill: currentColor;" d="M154.932,91.819L42.473,27.483c-2.219-1.26-4.93-1.26-7.121-0.027 c-2.219,1.233-3.588,3.533-3.615,6.026L31.08,161.059c0,0,0,0,0,0.027c0,2.465,1.369,4.766,3.533,6.026 c1.123,0.63,2.355,0.959,3.615,0.959c1.205,0,2.438-0.301,3.533-0.931l113.116-63.214c2.219-1.26,3.588-3.533,3.588-6.053 c0,0,0,0,0-0.027C158.465,95.38,157.123,93.079,154.932,91.819z"></path> <g id="XMLID_15_"> <g> <path style="fill:currentColor;" d="M79.952,44.888L79.952,44.888c3.273-3.273,2.539-8.762-1.479-11.06l-7.288-4.171 c-2.75-1.572-6.212-1.109-8.452,1.128l0,0c-3.273,3.273-2.539,8.762,1.479,11.06l7.291,4.169 C74.25,47.589,77.712,47.126,79.952,44.888z"></path> <path style="fill:currentColor;" d="M133.459,65.285L99.103,45.631c-2.75-1.572-6.209-1.109-8.449,1.128l0,0 c-3.273,3.273-2.539,8.759,1.479,11.057l23.497,13.44L23.931,122.5l0.52-103.393l19.172,10.964 c2.722,1.558,6.152,1.098,8.367-1.12l0.104-0.104c3.24-3.24,2.514-8.674-1.463-10.95L21,0.948 c-2.219-1.26-4.93-1.26-7.121-0.027c-2.219,1.233-3.588,3.533-3.615,6.026L9.607,134.524c0,0,0,0,0,0.027 c0,2.465,1.369,4.766,3.533,6.026c1.123,0.63,2.355,0.959,3.615,0.959c1.205,0,2.438-0.301,3.533-0.931l113.116-63.214 c2.219-1.26,3.588-3.533,3.588-6.053c0,0,0,0,0-0.027C136.992,68.845,135.65,66.545,133.459,65.285z"></path> </g> </g> </g> </g></svg> {{LANG shorts}}</span>
 
-			<?php if ($pt->config->shorts_system == 'on' && (!IS_LOGGED || (IS_LOGGED && !$pt->user->suspend_upload))) { ?>
-				<a href="{{LINK upload-video}}?type=shorts" class="btn btn-main" data-load="?link1=upload-video&type=shorts">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>{{LANG create}}
-				</a>
-			<?php } ?>
-		</h4>
+				<?php if ($pt->config->shorts_system == 'on' && (!IS_LOGGED || (IS_LOGGED && !$pt->user->suspend_upload))) { ?>
+					<a href="{{LINK upload-video}}?type=shorts" class="btn btn-main" data-load="?link1=upload-video&type=shorts">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>{{LANG create}}
+					</a>
+				<?php } ?>
+			</h4>
+		</div>
 		<div class="swiper">
 			<!-- Additional required wrapper -->
 			<div class="swiper-wrapper">
@@ -52,7 +59,7 @@ body {overflow: hidden;}
 					<?php if (IS_LOGGED): ?>
 					<img class="avatar" src="{{ME avatar}}" alt="{{ME name}} avatar" />
 					<?php endif; ?>
-					<textarea name="comment" class="form-control" id="shorts-comment-textarea" placeholder="{{LANG write_your_comment}}"></textarea>
+					<textarea name="comment" class="form-control" id="shorts-comment-textarea" placeholder="{{LANG write_your_comment}}" onkeypress="CheckToSubmit(event,this)"></textarea>
 					<input type="hidden" id="shorts-video-id">
 
 					<button class="btn pull-right btn-main" onclick="ShortsComment(this)" data-toggle="tooltip" title="{{LANG publish}}">
@@ -97,6 +104,11 @@ if (empty($_SESSION['finger'])) {
 <script>window.addEventListener('resize', () => {let vh = window.innerHeight * 0.01;document.documentElement.style.setProperty('--vh', `${vh}px`);});</script>
 
 <script type="text/javascript">
+	function CheckToSubmit(e,self) {
+		if (e.which == 13) {
+			$(self).nextAll('button').click();
+		}
+	}
 
 	function ShortsLoadComments() {
 		var sort_comments_by = 2;
@@ -177,7 +189,7 @@ if (empty($_SESSION['finger'])) {
 	$(document).ready( function () {
 
 		function SInitSlide(current_index = "<?php echo($pt->current_index) ?>") {
-			return new Swiper('.swiper', {
+			sSwiper = new Swiper('.swiper', {
 			  // Optional parameters
 			  direction: 'vertical',
 			  loop: false,
@@ -200,6 +212,12 @@ if (empty($_SESSION['finger'])) {
 			    el: '.swiper-scrollbar',
 			  },
 			});
+			$.post('{{LINK aj/views}}?hash=' + $('.main_session').val()+'&type_=add', {video_id:$(sSwiper.slides[sSwiper.activeIndex]).attr('video-id')}, function(data, textStatus, xhr) {
+		   if (data.status == 200) {
+		      $('#video-views-count-'+$(sSwiper.slides[sSwiper.activeIndex]).attr('video-id')).html(data.count);
+		   }
+		   });
+			return sSwiper;
 		}
 		// //$('video')[0].get(0).play();
 		// console.log($('video')[0])

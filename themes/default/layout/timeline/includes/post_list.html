@@ -1,4 +1,8 @@
-<div class="article-wrapper" data-id="{{ID}}" id="activity-{{ID}}">
+
+<style type="text/css">
+	.pt_main_chnl_content_title {margin-bottom: 0 !important}
+</style>
+<div class="" data-id="{{ID}}" id="activity-{{ID}}">
 	<div class="pt_actv_hdr">
 		<div class="avatar">
 			<a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}"><img src="{{USER avatar}}" alt="{{USER name}}"></a>
@@ -19,7 +23,7 @@
 				</ul>
 			</div>
 		<?php } ?>
-		<a href="{{URL}}" data-load="?link1=post&id={{ARTICLE_URL}}" class="avatar"><img src="{{THUMBNAIL}}" alt="{{TITLE}}"></a>
+		<a href="{{URL}}" data-load="?link1=post&id={{ARTICLE_URL}}" class=""><img src="{{THUMBNAIL}}" alt="{{TITLE}}"></a>
 	</div>
 	<div class="pt_act_likds">
 		<span onclick="PT_LikePost(this,'up');" data-post-likes="{{LIKES}}" data-post-id="{{ID}}">

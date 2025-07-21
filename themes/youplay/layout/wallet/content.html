@@ -191,7 +191,105 @@
         </div>
     </div>
 </div>
+<?php if ($pt->config->braintree_payment == 'yes') { ?>
+<div class="modal fade matdialog" id="braintree_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content add_money_modal add_address_modal">
+			<h5 class="modal-title text-center">{{LANG braintree}}</h5>
+
+			<form id="braintree_form" method="post">
+				<div class="modal-body">
+                	<div id="braintree_alert" style="color: red;"></div>
+                    <div id="braintree_content"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-main btn-mat" id="braintree_button">{{LANG pay}}</button>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+<?php } ?>
 <script>
+<?php if ($pt->config->braintree_payment == 'yes') { ?>
+
+var braintree_token = null;
+
+function braintreeCheckout(payload) {
+	$('#braintree_button').attr('disabled', true).text("{{LANG please_wait}}");
+	amount = $("#wallet_amount").val();
+	$.post('{{LINK aj/wallet/braintree}}',{amount:amount,nonce:payload.nonce}, function (data) {
+		if (data.status == 200) {
+        	location.href = data.url;
+        }
+        else{
+        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+			setTimeout(function () {
+				$('.pay-go-pro-alert').html("");
+			},3000);
+        }
+        $('#braintree_button').removeAttr('disabled');
+        $('#braintree_button').text("{{LANG pay}}");
+	});
+}
+function createBraintree(braintree_token) {
+	$('#pay-go-pro').modal('hide');
+	$('#braintree_modal').modal({
+         show: true
+        });
+
+	braintree.dropin.create({
+	  authorization: braintree_token,
+	  selector: '#braintree_content'
+	}, function (err, instance) {
+		$('#braintree_button').on('click',() => {
+			instance.requestPaymentMethod(function (err, payload) {
+		      braintreeCheckout(payload);
+		    });
+		});
+	});
+}
+function pay_using_braintree() {
+	if (braintree_token === null) {
+		$.post('{{LINK aj/wallet/get_braintree}}',{}, function (data) {
+			if (data.status == 200) {
+	        	braintree_token = data.braintree_token;
+	        	createBraintree(braintree_token);
+	        }
+	        else{
+	        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+				setTimeout(function () {
+					$('.pay-go-pro-alert').html("");
+				},3000);
+	        }
+		});
+	}
+	else{
+		createBraintree(braintree_token);
+	}
+}
+<?php } ?>
+<?php if ($pt->config->payfast_payment == 'yes') { ?>
+	function pay_using_payfast() {
+		$('#pay-go-pro').modal('hide');
+		$('.btn-payfast').attr('disabled', true);
+		amount = $("#wallet_amount").val();
+		$.post('{{LINK aj/wallet/payfast}}',{amount:amount}, function (data) {
+			if (data.status == 200) {
+	        	$('body').append(data.html);
+				document.getElementById("redirectForm").submit();
+	        }
+	        else{
+	        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+				setTimeout(function () {
+					$('.pay-go-pro-alert').html("");
+				},3000);
+	        }
+	        $('.btn-payfast').removeAttr('disabled');
+		});
+
+	}
+<?php } ?>
 <?php if ($pt->config->coinpayments == 'yes') { ?>
 	function pay_using_coinpayments() {
 		amount = $("#wallet_amount").val();
@@ -201,6 +299,27 @@
 	        }
 	    }).fail(function(data) {
     		M.toast({html: data.responseJSON.message});
+		});
+	}
+<?php } ?>
+<?php if ($pt->config->alipay_payment == 'yes') { ?>
+	function pay_using_alipay() {
+		amount = $("#wallet_amount").val();
+		$.post('{{LINK aj/wallet/alipay_pay}}',{amount:amount}, function (data) {
+	        if (data.status == 200) {
+	        	location.href = data.url;
+	        }
+	        else{
+	        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+				setTimeout(function () {
+					$('.pay-go-pro-alert').html("");
+				},3000);
+	        }
+	    }).fail(function(data) {
+	    	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.responseJSON.message+"</div>");
+			setTimeout(function () {
+				$('.pay-go-pro-alert').html("");
+			},3000);
 		});
 	}
 <?php } ?>
@@ -225,6 +344,18 @@
     		M.toast({html: data.responseJSON.message});
 		});
 		
+	}
+<?php } ?>
+<?php if ($pt->config->qiwi_payment == 'yes') { ?>
+	function pay_using_qiwi() {
+		amount = $("#wallet_amount").val();
+		$.post('{{LINK aj/wallet/qiwi}}',{amount:amount}, function (data) {
+	        if (data.status == 200) {
+	        	location.href = data.url;
+	        }
+	    }).fail(function(data) {
+    		M.toast({html: data.responseJSON.message});
+		});
 	}
 <?php } ?>
 <?php if ($pt->config->ngenius_payment == 'yes') { ?>
@@ -517,13 +648,13 @@
 		  preConfirm: function () {
 		    return new Promise(function (resolve, reject) {
 		    	amount = $(".replenish-balance-form.clone").find('input').val();
-		    	if ({{ME balance}} < 1) {
+		    	if ({{ME balance_or}} < 1) {
 		    		reject("{{LANG no_balance_to_move}}!");
 		    	}
 		    	else if (!amount || amount < 1){
 		    		reject("{{LANG please_check_details}}!");
 		    	}
-		    	else if(amount > {{ME balance}}){
+		    	else if(amount > {{ME balance_or}}){
 		    		reject("{{LANG more_than_balance}}!");
 		    	}
 		    	else{

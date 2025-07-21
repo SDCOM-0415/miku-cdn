@@ -5,7 +5,7 @@
          preg_match($re, '#'.$_GET['color'], $matches, PREG_OFFSET_CAPTURE, 0);
          if (!empty($matches) && !empty($matches[0]) && !empty($matches[0][0])) {
             $matches[0][0] = PT_Secure($matches[0][0]);
-            $matches[0][0] = filter_var ( $matches[0][0], FILTER_SANITIZE_STRING);
+            $matches[0][0] = filter_var ( $matches[0][0], FILTER_UNSAFE_RAW);
             echo ".plyr--full-ui.plyr--video .plyr__control--overlaid{background-color: ".$matches[0][0]." !important;}";
             echo ".plyr__volume input[type=range] {color: ".$matches[0][0]." !important;}";
             echo ".plyr__progress input[type=range] {color: ".$matches[0][0]." !important;}";
@@ -19,6 +19,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="{{CONFIG theme_url}}/js/Fingerprintjs2/fingerprint2.js"></script>
     <link rel="stylesheet" href="{{CONFIG theme_url}}/player/css/mediaelementplayer.min.css?version={{CONFIG version}}" />
@@ -28,6 +29,8 @@
     <?php if (!empty($pt->get_video->twitch)) {  ?>
     <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
   <?php }  ?>
+  <?php if (!empty($pt->config->google)) { echo htmlspecialchars_decode($pt->config->google); } ?>
+  <?php if (!empty($pt->config->google_vignette)) { echo htmlspecialchars_decode($pt->config->google_vignette); } ?>
   <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
   <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
   <title>{{TITLE}}</title>
@@ -43,6 +46,8 @@
             <iframe src="http://player.vimeo.com/video/{{VIDEO_ID}}?api=1;title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1" width="100%" height="<?php echo $pt->height;?>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
          <?php } else if (!empty($pt->get_video->daily)) { ?>
             <iframe frameborder="0" width="100%" height="<?php echo $pt->height;?>" src="//www.dailymotion.com/embed/video/{{VIDEO_ID}}?PARAMS" allowfullscreen></iframe>
+         <?php }  else if (!empty($pt->get_video->youtube) && $pt->config->youtube_player == 'on') { ?>
+            <iframe width="100%" height="<?php echo $pt->height;?>" src="https://www.youtube.com/embed/<?php echo($pt->get_video->youtube); ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
          <?php }  else if (!empty($pt->get_video->twitch)) {
                   if ($pt->get_video->twitch_type != 'streams') {
                      if ($pt->get_video->twitch_type == 'videos') {

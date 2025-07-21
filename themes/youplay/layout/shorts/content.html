@@ -52,7 +52,7 @@ body {overflow: hidden;}
 					<?php if (IS_LOGGED): ?>
 					<img class="avatar" src="{{ME avatar}}" alt="{{ME name}} avatar" />
 					<?php endif; ?>
-					<textarea name="comment" class="form-control" id="shorts-comment-textarea" placeholder="{{LANG write_your_comment}}"></textarea>
+					<textarea name="comment" class="form-control" id="shorts-comment-textarea" placeholder="{{LANG write_your_comment}}" onkeypress="CheckToSubmit(event,this)"></textarea>
 					<input type="hidden" id="shorts-video-id">
 
 					<button class="btn pull-right btn-main" onclick="ShortsComment(this)" data-toggle="tooltip" title="{{LANG publish}}">
@@ -98,6 +98,11 @@ if (empty($_SESSION['finger'])) {
 <script>window.addEventListener('resize', () => {let vh = window.innerHeight * 0.01;document.documentElement.style.setProperty('--vh', `${vh}px`);});</script>
 
 <script type="text/javascript">
+	function CheckToSubmit(e,self) {
+		if (e.which == 13) {
+			$(self).nextAll('button').click();
+		}
+	}
 
 	function ShortsLoadComments() {
 		var sort_comments_by = 2;
@@ -178,7 +183,7 @@ if (empty($_SESSION['finger'])) {
 	$(document).ready( function () {
 
 		function SInitSlide(current_index = "<?php echo($pt->current_index) ?>") {
-			return new Swiper('.swiper', {
+			sSwiper = new Swiper('.swiper', {
 			  // Optional parameters
 			  direction: 'vertical',
 			  loop: false,
@@ -201,6 +206,13 @@ if (empty($_SESSION['finger'])) {
 			    el: '.swiper-scrollbar',
 			  },
 			});
+
+			$.post('{{LINK aj/views}}?hash=' + $('.main_session').val()+'&type_=add', {video_id:$(sSwiper.slides[sSwiper.activeIndex]).attr('video-id')}, function(data, textStatus, xhr) {
+		   if (data.status == 200) {
+		      $('#video-views-count-'+$(sSwiper.slides[sSwiper.activeIndex]).attr('video-id')).html(data.count);
+		   }
+		   });
+			return sSwiper;
 		}
 		// //$('video')[0].get(0).play();
 		// console.log($('video')[0])

@@ -108,7 +108,7 @@
 						</li>
 						<?php } ?>
 						<li>
-							<a href="javascript:void(0)" onclick="GoToPage(<?php echo($pt->total_pages) ?>)" class="waves-effect" title='Last Page'>
+							<a href="javascript:void(0)" onclick="GoToPage(<?php echo($pt->total_pages) ?>,'&last_page=1')" class="waves-effect" title='Last Page'>
 								<i class="material-icons">last_page</i>
 							</a>
 						</li>
@@ -141,8 +141,8 @@
 	function ChangePage() {
 		$('.search_filter_form').attr('action', "{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?>&page_id=1");
 	}
-	function GoToPage(page_id) {
-		$('.search_filter_form').attr('action', "{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?>&page_id="+page_id);
+	function GoToPage(page_id,last='') {
+		$('.search_filter_form').attr('action', "{{LINK search}}<?php echo(!empty($_GET['keyword']) ? '?keyword='.$_GET['keyword'] : '') ?>&page_id="+page_id+last);
 		$('#submit').click();
 	}
 	function show_search_filter() {

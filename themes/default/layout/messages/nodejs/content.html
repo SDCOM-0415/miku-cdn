@@ -1,3 +1,7 @@
+<style>
+.fixed-action-btn {display: none;}
+</style>
+
 <div class="page-margin pt_shadow">
     <div class="row">
         <div class="col-md-4 mobilerightpane no-padding-right">
@@ -6,7 +10,21 @@
         <div class="col-md-8 mobileleftpane no-padding-left">
             <ul class="pt_msg_main">
                 <div class="settings-header pt_msg_header">
-                    <h3 class="pull-left"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left mobilemsgclose"><polyline points="15 18 9 12 15 6"></polyline></svg> <?php echo (!empty($pt->chat_user->name)) ? "<a style='color: #fff;' href='" . $pt->chat_user->url . "'>" . $pt->chat_user->name . "</a>" : "<a style='color: #fff;' class='user-link'></a>";?></h3>
+                    <h3 class="pull-left">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left mobilemsgclose"><polyline points="15 18 9 12 15 6"></polyline></svg> 
+                        <!-- <div class="chat_section">
+                            <div class="chat_left_setcion">
+                               <img src="{{CONFIG theme_url}}/img/login_line.svg">
+                            </div>
+                            <div class="chat_right_section">
+                                <?php echo (!empty($pt->chat_user->name)) ? "<a style='color: #fff;' href='" . $pt->chat_user->url . "'>" . $pt->chat_user->name . "</a>" : "<a style='color: #fff;' class='user-link'></a>";?>aaa
+                            </div>
+                        </div> -->
+
+                    </h3>
+
+                    
                     <?php echo (!empty($pt->chat_user->name)) ? '<div class="pull-right" id="delete-conversation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></div>' : '';?>
                     <div class="clear"></div>
                 </div>
@@ -143,13 +161,25 @@ socket.on('get new message', function (data) {
         $('.data_message[data-id="' + data.message_id + '"]').html(data.message);
     }
 });
-
+socket.on('stop_message', function (data) {
+    $('.data_message[data-id="' + data.message_id + '"]').remove();
+    swal({
+       title: '{{LANG error}}',
+       text: "{{LANG something_wrong_send_messages}}",
+       type: 'error',
+       confirmButtonColor: '#3085d6',
+       cancelButtonColor: '#d33',
+       confirmButtonText: 'OK',
+       buttonsStyling: true,
+       confirmButtonClass: 'btn btn-success',
+    });
+});
 
 $(function() {
     $('.user-list a').on('click', function(event) {
         event.preventDefault();
         clearTimeout(messagesInterval);
-        $('.mobilerightpane').fadeOut(100);
+        //$('.mobilerightpane').fadeOut(100);
         $('.mobileleftpane').fadeIn(100);
         $(this).focusout();
         $id = $(this).attr('data-id');
@@ -216,6 +246,6 @@ function submitForm() {
     
 $('.mobilemsgclose').on('click',function (){
     $('.mobileleftpane').fadeOut(100);
-    $('.mobilerightpane').fadeIn(100);
+    //$('.mobilerightpane').fadeIn(100);
 });
 </script>

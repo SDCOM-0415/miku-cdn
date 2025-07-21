@@ -4,10 +4,13 @@
 			<div class="settings-sidebar" id="mobi-set-side">
 				<ul class="list-group scrollmenu">
 					<li class="list-group-item <?php echo ($pt->setting_page == 'general') ? 'active': '';?>">
-						<a href="{{LINK settings/general/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=general"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path fill="currentColor" d="M8.686 4l2.607-2.607a1 1 0 0 1 1.414 0L15.314 4H19a1 1 0 0 1 1 1v3.686l2.607 2.607a1 1 0 0 1 0 1.414L20 15.314V19a1 1 0 0 1-1 1h-3.686l-2.607 2.607a1 1 0 0 1-1.414 0L8.686 20H5a1 1 0 0 1-1-1v-3.686l-2.607-2.607a1 1 0 0 1 0-1.414L4 8.686V5a1 1 0 0 1 1-1h3.686zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg> {{LANG general}}</a>
+						<a href="{{LINK settings/general/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=general&user=<?php echo $pt->settings->username; ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path fill="currentColor" d="M8.686 4l2.607-2.607a1 1 0 0 1 1.414 0L15.314 4H19a1 1 0 0 1 1 1v3.686l2.607 2.607a1 1 0 0 1 0 1.414L20 15.314V19a1 1 0 0 1-1 1h-3.686l-2.607 2.607a1 1 0 0 1-1.414 0L8.686 20H5a1 1 0 0 1-1-1v-3.686l-2.607-2.607a1 1 0 0 1 0-1.414L4 8.686V5a1 1 0 0 1 1-1h3.686zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg> {{LANG general}}</a>
 					</li>
 					<li class="list-group-item <?php echo ($pt->setting_page == 'profile') ? 'active': '';?>">
 						<a href="{{LINK settings/profile/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=profile&user=<?php echo $pt->settings->username; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6,22h12h1c1.104,0,2-0.896,2-2V4c0-1.104-0.896-2-2-2h-1H6H5C3.896,2,3,2.896,3,4v16c0,1.104,0.896,2,2,2H6z M12,4.999 c1.647,0,3,1.351,3,3C15,9.647,13.647,11,12,11S9,9.647,9,7.999C9,6.35,10.353,4.999,12,4.999z M6,17.25c0-2.219,2.705-4.5,6-4.5 s6,2.281,6,4.5V18H6V17.25z"></path></svg> {{LANG profile}}</a>
+					</li>
+					<li class="list-group-item <?php echo ($pt->setting_page == 'privacy') ? 'active': '';?>">
+						<a href="{{LINK settings/privacy/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=privacy&user=<?php echo $pt->settings->username; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M17.13,17C15.92,18.85 14.11,20.24 12,20.92C9.89,20.24 8.08,18.85 6.87,17C6.53,16.5 6.24,16 6,15.47C6,13.82 8.71,12.47 12,12.47C15.29,12.47 18,13.79 18,15.47C17.76,16 17.47,16.5 17.13,17Z"></path></svg> {{LANG privacy}}</a>
 					</li>
 					<?php if (($pt->config->usr_v_mon == 'on' || $pt->config->payed_subscribers == 'on') && ($pt->settings->id == $pt->user->id)): ?>
 						<li class="list-group-item <?php echo ($pt->setting_page == 'monetization') ? 'active': '';?>">
@@ -30,12 +33,17 @@
 							<a href="{{LINK settings/verification/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=verification&user=<?php echo $pt->settings->username; ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path fill="currentColor" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-.997-6l7.07-7.071-1.414-1.414-5.656 5.657-2.829-2.829-1.414 1.414L11.003 16z"/></svg> {{LANG verification}}</a>
 						</li>
 					<?php endif ?>
+					<?php if ($pt->config->affiliate_system == 1): ?>  
+						<li class="list-group-item <?php echo ($pt->setting_page == 'my_affiliates') ? 'active': '';?>">
+							<a href="{{LINK settings/my_affiliates/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=my_affiliates&user=<?php echo $pt->settings->username; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"></path></svg> {{LANG my_affiliates}}</a>
+						</li>
+					<?php endif ?>
 					<?php if ($pt->config->point_level_system == 1): ?>  
 						<li class="list-group-item <?php echo ($pt->setting_page == 'points') ? 'active': '';?>">
 							<a href="{{LINK settings/points/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=points&user=<?php echo $pt->settings->username; ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path fill="currentColor" d="M12 15.968l4.247 2.377-.949-4.773 3.573-3.305-4.833-.573L12 5.275v10.693zm0 2.292l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928L12 18.26z"/></svg> {{LANG points}}</a>
 						</li>
 					<?php endif ?>
-					<?php if ($pt->config->two_factor_setting == 'on'): ?>  
+					<?php if ($pt->config->two_factor_setting == 'on' || $pt->config->google_authenticator == 'on'): ?>  
 						<li class="list-group-item <?php echo ($pt->setting_page == 'two_factor') ? 'active': '';?>">
 							<a href="{{LINK settings/two_factor/<?php echo $pt->settings->username; ?>}}" data-load="?link1=settings&page=two_factor&user=<?php echo $pt->settings->username; ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path fill="currentColor" d="M7 7V3a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-4v3.993c0 .556-.449 1.007-1.007 1.007H3.007A1.006 1.006 0 0 1 2 20.993l.003-12.986C2.003 7.451 2.452 7 3.01 7H7zm2 0h6.993C16.549 7 17 7.449 17 8.007V15h3V4H9v3zm-.497 11l5.656-5.657-1.414-1.414-4.242 4.243L6.38 13.05l-1.414 1.414L8.503 18z"/></svg> {{LANG two_factor}}</a>
 						</li>

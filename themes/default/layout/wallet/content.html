@@ -8,9 +8,76 @@
 <script src="https://securionpay.com/checkout.js"></script>
 <?php } ?>
 <?php echo PT_LoadPage('third-party/paypal-demo'); ?>
+<div class="container-home">
+<h3 class="recent-articles heading_all_sections_top">
+	<span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="15" height="11.842" viewBox="0 0 15 11.842">
+				  <path id="Path_30536" data-name="Path 30536" d="M13.947,4.5H6.053A3.558,3.558,0,0,0,2.5,8.053h15A3.558,3.558,0,0,0,13.947,4.5ZM2.5,9.632v3.158a3.558,3.558,0,0,0,3.553,3.553h7.895A3.558,3.558,0,0,0,17.5,12.789V9.632Zm5.921,3.947H6.053a.789.789,0,1,1,0-1.579H8.421a.789.789,0,0,1,0,1.579Z" transform="translate(-2.5 -4.5)" fill="currentColor"></path>
+				</svg>
+		<span>{{LANG wallet}}</span>
+	</span>
+</h3>
 
+
+	<div class="row marg">
+		<div class="col-md-4">
+				<div class="box_light_black pos-relative">
+					<div class="bg_dots">
+						<img src="{{CONFIG theme_url}}/img/bgbars.png">
+					</div>
+						<div class="coin_bg">
+							<img src="{{CONFIG theme_url}}/img/coin.png">
+						</div>
+						<div class="wallet_text_statoc text-center">
+							{{LANG wallet}}
+						</div>
+						<div class="balance_text">
+							Your wallet currently <br>has a balance of <span>{{CURRENCY}}{{ME wallet}}</span>
+						</div>
+
+						<div class="text-center">
+							<button class="btn btn_wallet btn-main" type="button" onclick="PT_ReplenishWallet();">{{LANG replenish}}</button>
+						</div>
+				</div>
+		</div>
+		<div class="col-md-8">
+				<div class="box_light_black">
+					<div class="wallet_text text-left">
+						{{LANG balance}}
+					</div>
+
+					<div class="wallet_transfer_section">
+						<div class="left_balance_wrap">
+							<div class="balance_text_left">
+								{{LANG balance_}}
+							</div>
+							<div class="balance_bold">
+								{{CURRENCY}}{{ME balance}}
+							</div>
+							<!-- <div class="highlight_wallet">
+								<svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.999" viewBox="0 0 15 14.999">
+								  <path id="arrow" d="M403.5,398a7.5,7.5,0,1,1,7.5-7.5v.21A7.5,7.5,0,0,1,403.5,398Zm0-8.234h0l2.205,2.212a.559.559,0,0,0,.791.011l0,0a.562.562,0,0,0,.169-.4.547.547,0,0,0-.169-.39l-2.6-2.617a.56.56,0,0,0-.792,0l0,0-2.6,2.617a.525.525,0,0,0-.165.39.56.56,0,0,0,.165.4.568.568,0,0,0,.4.162.55.55,0,0,0,.4-.17l2.2-2.211Z" transform="translate(-396 -383)" fill="currentColor"/>
+								</svg>
+								+18% {{LANG this_week}}
+							</div>
+
+							<div class="balance_text_left">
+								{{LANG update_your_statics}}<br> {{LANG information_in_setting}}
+							</div> -->
+
+							<button class="btn btn_wallet btn-main" type="button" onclick="PT_ReplenishBalance();">{{LANG transfer}}</button>
+						</div>
+						<div class="right_balance_wrap">
+							<img src="{{CONFIG theme_url}}/img/wallet_bar.png">
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+
+
+<?php /* ?>
 <div class="user-setting-panel pt_shadow">
-	<h4 class="pt_mn_page_hd"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M21,18V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H19A2,2 0 0,1 21,5V6H12C10.89,6 10,6.9 10,8V16A2,2 0 0,0 12,18M12,16H22V8H12M16,13.5A1.5,1.5 0 0,1 14.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,12A1.5,1.5 0 0,1 16,13.5Z"></path></svg> {{LANG wallet}}</h4>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="pt_invit_link green wallet">
@@ -31,6 +98,7 @@
 
 <br>
 
+<?php */ ?>
 <div class="modal fade matdialog" id="2checkout_modal" role="dialog" data-keyboard="false" style="overflow-y: auto;">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -38,35 +106,64 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
 				<h4 class="modal-title">{{LANG checkout_text}}</h4>
 			</div>
-			<form class="form form-horizontal" method="post" id="2checkout_form" action="#">
+			<form class="form" method="post" id="2checkout_form" action="#">
 				<div class="modal-body twocheckout_modal">
 					<div id="2checkout_alert"></div>
 					<div class="clear"></div>
-					<div class="sun_input col-md-6">
-						<input id="card_name" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG name}}" value="<?php echo($pt->user->name) ?>">
+					<div class="upload_video_bg_color">
+						<div class="step_2_form">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG name}}</label>
+										<input id="card_name" type="text" class="form-control input-md" autocomplete="off" placeholder=" " value="<?php echo($pt->user->name) ?>">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG address}}</label>
+										<input id="card_address" type="text" class="form-control input-md" autocomplete="off" placeholder=" ">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG city}}</label>
+										<input id="card_city" type="text" class="form-control input-md" autocomplete="off" placeholder=" ">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG state}}</label>
+										<input id="card_state" type="text" class="form-control input-md" autocomplete="off" placeholder=" ">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG zip}}</label>
+										<input id="card_zip" type="text" class="form-control input-md" autocomplete="off" placeholder=" ">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG country}}</label>
+										 <select id="card_country" name="card_country" class="form-control">{{COUNTRIES}}</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG email}}</label>
+										<input id="card_email" type="text" class="form-control input-md" autocomplete="off" placeholder=" " value="<?php echo($pt->user->email) ?>">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label>{{LANG phone_number}}</label>
+										<input id="card_phone" type="text" class="form-control input-md" autocomplete="off" placeholder=" " value="<?php echo($pt->user->phone_number) ?>">
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="sun_input col-md-6">
-						<input id="card_address" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG address}}">
-					</div>
-					<div class="sun_input col-md-6">
-						<input id="card_city" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG city}}">
-					</div>
-					<div class="sun_input col-md-6">
-						<input id="card_state" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG state}}">
-					</div>
-					<div class="sun_input col-md-6">
-						<input id="card_zip" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG zip}}">
-					</div>
-			        <div class="sun_input col-md-6">
-			             <select id="card_country" name="card_country" class="form-control">{{COUNTRIES}}</select>
-			        </div>
-					<div class="sun_input col-md-6">
-						<input id="card_email" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG email}}" value="<?php echo($pt->user->email) ?>">
-					</div>
-					<div class="sun_input col-md-6">
-						<input id="card_phone" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG phone_number}}" value="<?php echo($pt->user->phone_number) ?>">
-					</div>
-					<div class="clear"></div>
 					<hr>
 					<div class="row two_check_card">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>
@@ -118,17 +215,34 @@
 <div class="modal fade matdialog" id="authorize_modal" role="dialog" data-keyboard="false" style="overflow-y: auto;">
         <div class="modal-dialog">
             <div class="modal-content">
-                <h4 class="modal-title">{{LANG authorize}}</h4>
-                <form class="form form-horizontal" method="post" id="authorize_form" action="#">
+				<div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                           <line x1="18" y1="6" x2="6" y2="18"></line>
+                           <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                     </span>
+                  </button>
+                  <h4 class="modal-title">{{LANG authorize}}</h4>
+               </div>
+			   
+                <form class="form" method="post" id="authorize_form" action="#">
                     <div class="modal-body authorize_modal">
                         <div id="authorize_alert"></div>
                         <div class="clear"></div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="authorize_number" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG card_number}}">
+						
+						<div class="upload_video_bg_color">
+						<div class="step_2_form">
+							<div class="form-group" style="margin-bottom: 30px;">
+								<label>{{LANG card_number}}</label>
+                                <input id="authorize_number" type="text" class="form-control input-md" autocomplete="off" placeholder=" ">
                             </div>
-                            <div class="input-field col s4">
-                                <select id="authorize_month" name="card_month" type="text" class="browser-default" autocomplete="off" placeholder="{{LANG month}} (01)">
+							<div class="row">
+                             <div class="col-md-4">
+                            <div class="form-group">
+								<label>{{LANG month}}</label>
+                                <select id="authorize_month" name="card_month" type="text" class="browser-default" autocomplete="off">
                                     <option value="01">01</option>
                                     <option value="02">02</option>
                                     <option value="03">03</option>
@@ -143,17 +257,28 @@
                                     <option value="12">12</option>
                                 </select>
                             </div>
-                            <div class="input-field col s4 no-padding-both">
-                                <select id="authorize_year" name="card_year" type="text" class="browser-default" autocomplete="off" placeholder="{{LANG year}} (2021)">
+							</div>
+							<div class="col-md-4">
+                            <div class="form-group">
+								<label>{{LANG year}}</label>
+                                <select id="authorize_year" name="card_year" type="text" class="browser-default" autocomplete="off">
                                     <?php for ($i=date('Y'); $i <= date('Y')+15; $i++) {  ?>
                                         <option value="<?php echo($i) ?>"><?php echo($i) ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                            <div class="input-field col s4">
-                                <input id="authorize_cvc" name="card_cvc" type="text" class="form-control input-md" autocomplete="off" placeholder="CVC" maxlength="3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							</div>
+							<div class="col-md-4">
+                            <div class="form-group">
+								<label>CVC</label>
+                                <input id="authorize_cvc" name="card_cvc" type="text" class="form-control input-md" autocomplete="off" placeholder="" maxlength="3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
                             </div>
+							</div>
                         </div>
+						</div>
+						</div>
+						
+                        
                     </div>
                     <div class="clear"></div>
                     <div class="modal-footer">
@@ -165,21 +290,39 @@
         </div>
     </div>
 <div class="modal fade matdialog" id="aamarpay_modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content add_money_modal add_address_modal">
-            <h5 class="modal-title text-center">{{LANG aamarpay}}</h5>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+			<div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                           <line x1="18" y1="6" x2="6" y2="18"></line>
+                           <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                     </span>
+                  </button>
+                  <h4 class="modal-title">{{LANG aamarpay}}</h4>
+               </div>
+			   
             <div class="modal-body">
                 <div id="aamarpay_alert" style="    color: red;"></div>
                 <form id="aamarpay_form" method="post">
-                    <div class="form-group">
-                        <input class="form-control shop_input" type="text" placeholder="{{LANG name}}"  value="<?php echo($pt->user->name) ?>" id="aamarpay_name">
+					<div class="upload_video_bg_color">
+						<div class="step_2_form">
+				   <div class="form-group">
+					<label>{{LANG name}}</label>
+                        <input class="form-control shop_input" type="text" placeholder=" "  value="<?php echo($pt->user->name) ?>" id="aamarpay_name">
                     </div>
                     <div class="form-group">
-                        <input class="form-control shop_input" type="email" placeholder="{{LANG email}}" value="<?php echo($pt->user->email) ?>" id="aamarpay_email">
+						<label>{{LANG email}}</label>
+                        <input class="form-control shop_input" type="text" placeholder=" " value="<?php echo($pt->user->email) ?>" id="aamarpay_email">
                     </div>
-                    <div class="form-group">
-                        <input id="aamarpay_number" class="form-control shop_input" type="text" placeholder="{{LANG phone_number}}" value="<?php echo($pt->user->phone_number) ?>">
+                    <div class="form-group mb-0">
+						<label>{{LANG phone_number}}</label>
+                        <input id="aamarpay_number" class="form-control shop_input" type="text" placeholder=" " value="<?php echo($pt->user->phone_number) ?>">
                     </div>
+					</div>
+					</div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-main" onclick="AamarpayRequest()" id="aamarpay_button">{{LANG pay}}</button>
                     </div>
@@ -188,7 +331,110 @@
         </div>
     </div>
 </div>
+</div>
+<?php if ($pt->config->braintree_payment == 'yes') { ?>
+<div class="modal fade matdialog" id="braintree_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span></button>
+				<h4 class="modal-title">{{LANG braintree}}</h4>
+			</div>
+			<form id="braintree_form" method="post">
+				<div class="modal-body">
+                	<div id="braintree_alert" style="color: red;"></div>
+                    <div id="braintree_content"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-main btn-mat" id="braintree_button">{{LANG pay}}</button>
+				</div>
+			</form>
+        </div>
+    </div>
+</div>
+<?php } ?>
 <script>
+	
+
+<?php if ($pt->config->braintree_payment == 'yes') { ?>
+
+var braintree_token = null;
+
+function braintreeCheckout(payload) {
+	$('#braintree_button').attr('disabled', true).text("{{LANG please_wait}}");
+	amount = $("#wallet_amount").val();
+	$.post('{{LINK aj/wallet/braintree}}',{amount:amount,nonce:payload.nonce}, function (data) {
+		if (data.status == 200) {
+        	location.href = data.url;
+        }
+        else{
+        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+			setTimeout(function () {
+				$('.pay-go-pro-alert').html("");
+			},3000);
+        }
+        $('#braintree_button').removeAttr('disabled');
+        $('#braintree_button').text("{{LANG pay}}");
+	});
+}
+function createBraintree(braintree_token) {
+	$('#pay-go-pro').modal('hide');
+	$('#braintree_modal').modal({
+         show: true
+        });
+
+	braintree.dropin.create({
+	  authorization: braintree_token,
+	  selector: '#braintree_content'
+	}, function (err, instance) {
+		$('#braintree_button').on('click',() => {
+			instance.requestPaymentMethod(function (err, payload) {
+		      braintreeCheckout(payload);
+		    });
+		});
+	});
+}
+function pay_using_braintree() {
+	if (braintree_token === null) {
+		$.post('{{LINK aj/wallet/get_braintree}}',{}, function (data) {
+			if (data.status == 200) {
+	        	braintree_token = data.braintree_token;
+	        	createBraintree(braintree_token);
+	        }
+	        else{
+	        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+				setTimeout(function () {
+					$('.pay-go-pro-alert').html("");
+				},3000);
+	        }
+		});
+	}
+	else{
+		createBraintree(braintree_token);
+	}
+}
+<?php } ?>
+<?php if ($pt->config->payfast_payment == 'yes') { ?>
+	function pay_using_payfast() {
+		$('#pay-go-pro').modal('hide');
+		$('.btn-payfast').attr('disabled', true);
+		amount = $("#wallet_amount").val();
+		$.post('{{LINK aj/wallet/payfast}}',{amount:amount}, function (data) {
+			if (data.status == 200) {
+	        	$('body').append(data.html);
+				document.getElementById("redirectForm").submit();
+	        }
+	        else{
+	        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+				setTimeout(function () {
+					$('.pay-go-pro-alert').html("");
+				},3000);
+	        }
+	        $('.btn-payfast').removeAttr('disabled');
+		});
+
+	}
+<?php } ?>
 <?php if ($pt->config->coinpayments == 'yes') { ?>
 	function pay_using_coinpayments() {
 		amount = $("#wallet_amount").val();
@@ -198,6 +444,27 @@
 	        }
 	    }).fail(function(data) {
     		M.toast({html: data.responseJSON.message});
+		});
+	}
+<?php } ?>
+<?php if ($pt->config->alipay_payment == 'yes') { ?>
+	function pay_using_alipay() {
+		amount = $("#wallet_amount").val();
+		$.post('{{LINK aj/wallet/alipay_pay}}',{amount:amount}, function (data) {
+	        if (data.status == 200) {
+	        	location.href = data.url;
+	        }
+	        else{
+	        	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.message+"</div>");
+				setTimeout(function () {
+					$('.pay-go-pro-alert').html("");
+				},3000);
+	        }
+	    }).fail(function(data) {
+	    	$('.pay-go-pro-alert').html("<div class='alert alert-danger'>"+data.responseJSON.message+"</div>");
+			setTimeout(function () {
+				$('.pay-go-pro-alert').html("");
+			},3000);
 		});
 	}
 <?php } ?>
@@ -222,6 +489,18 @@
     		M.toast({html: data.responseJSON.message});
 		});
 		
+	}
+<?php } ?>
+<?php if ($pt->config->qiwi_payment == 'yes') { ?>
+	function pay_using_qiwi() {
+		amount = $("#wallet_amount").val();
+		$.post('{{LINK aj/wallet/qiwi}}',{amount:amount}, function (data) {
+	        if (data.status == 200) {
+	        	location.href = data.url;
+	        }
+	    }).fail(function(data) {
+    		M.toast({html: data.responseJSON.message});
+		});
 	}
 <?php } ?>
 <?php if ($pt->config->ngenius_payment == 'yes') { ?>
@@ -514,13 +793,13 @@
 		  preConfirm: function () {
 		    return new Promise(function (resolve, reject) {
 		    	amount = $(".replenish-balance-form.clone").find('input').val();
-		    	if ({{ME balance}} < 1) {
+		    	if ({{ME balance_or}} < 1) {
 		    		reject("{{LANG no_balance_to_move}}!");
 		    	}
 		    	else if (!amount || amount < 1){
 		    		reject("{{LANG please_check_details}}!");
 		    	}
-		    	else if(amount > {{ME balance}}){
+		    	else if(amount > {{ME balance_or}}){
 		    		reject("{{LANG more_than_balance}}!");
 		    	}
 		    	else{

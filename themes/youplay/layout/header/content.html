@@ -12,9 +12,9 @@
 		<?php } ?>
 		<a class="navbar-brand logo-img" href="{{LINK }}" itemprop="url">
 			<?php if ((!empty($pt->get_video) && $pt->get_video->is_movie) || $pt->page == 'movies') { ?>
-				<img itemprop="logo" src="{{CONFIG theme_url}}/img/logo-light.png" alt="{{CONFIG title}}">
+				<img itemprop="logo" src="{{CONFIG theme_url}}/img/logo-light.png?cache=<?php echo($pt->config->logo_cache) ?>" alt="{{CONFIG title}}">
 			<?php } else { ?>
-				<img itemprop="logo" src="{{CONFIG theme_url}}/img/<?php echo ($pt->mode != 'night') ? 'logo' : 'logo-light';?>.png" alt="{{CONFIG title}}">
+				<img itemprop="logo" src="{{CONFIG theme_url}}/img/<?php echo ($pt->mode != 'night') ? 'logo' : 'logo-light';?>.png?cache=<?php echo($pt->config->logo_cache) ?>" alt="{{CONFIG title}}">
 			<?php } ?>
 		</a>
 	</div>

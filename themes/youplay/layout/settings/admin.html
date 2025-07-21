@@ -56,11 +56,11 @@
 	<div class="col-md-12">
 		<div class="pt_vdo_cstm_radio">
 			<input type="radio" name="suspend_upload" id="suspend_upload-0" value="suspend" <?php echo ($pt->settings->suspend_upload == 1) ? 'checked': ''?>>
-			<label for="suspend_upload-0">{{LANG enable}}</label>
+			<label for="suspend_upload-0">{{LANG yes}}</label>
 		</div>
 		<div class="pt_vdo_cstm_radio">
 			<input type="radio" name="suspend_upload" id="suspend_upload-1" value="unsuspend" <?php echo ($pt->settings->suspend_upload == 0) ? 'checked': ''?>>
-			<label for="suspend_upload-1">{{LANG disable}}</label>
+			<label for="suspend_upload-1">{{LANG no}}</label>
 		</div>
 	</div>
 </div>
@@ -69,11 +69,11 @@
 	<div class="col-md-12">
 		<div class="pt_vdo_cstm_radio">
 			<input type="radio" name="suspend_import" id="suspend_import-0" value="suspend" <?php echo ($pt->settings->suspend_import == 1) ? 'checked': ''?>>
-			<label for="suspend_import-0">{{LANG enable}}</label>
+			<label for="suspend_import-0">{{LANG yes}}</label>
 		</div>
 		<div class="pt_vdo_cstm_radio">
 			<input type="radio" name="suspend_import" id="suspend_import-1" value="unsuspend" <?php echo ($pt->settings->suspend_import == 0) ? 'checked': ''?>>
-			<label for="suspend_import-1">{{LANG disable}}</label>
+			<label for="suspend_import-1">{{LANG no}}</label>
 		</div>
 	</div>
 </div>
@@ -94,5 +94,11 @@
             <option value="10000000000" <?php if($pt->settings->user_upload_limit == '10000000000'){ echo "selected";} ?>>10GB</option>
             <option value="unlimited" <?php if($pt->settings->user_upload_limit == 'unlimited'){ echo "selected";} ?>>Unlimited</option>
         </select>
+    </div>
+</div>
+<div class="form-group col-lg-6">
+    <label class="col-md-12" for="wallet">{{LANG wallet}}</label>
+    <div class="col-md-12">
+        <input id="wallet" name="wallet" type="text" placeholder="" class="form-control input-md" value="{{USER wallet}}">
     </div>
 </div>

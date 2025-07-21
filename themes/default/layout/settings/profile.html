@@ -1,6 +1,14 @@
-<form class="form-horizontal user-setting-panel pt_forms pt_shadow" id="profile-settings" method="POST">
+<div class="profile_static_text">
+	<h3>{{LANG profile_static}}</h3>
+	<p>
+		{{LANG profile_descp_static}}
+	</p>
+</div>
+
+<form class="form-horizontal user-setting-panel pt_forms pt_shadow  row" id="profile-settings" method="POST">
     <div class="setting-profile-alert"></div>
 	<!-- Text input-->
+	<div class="group_flex">
 	<div class="form-group">
 		<label class="col-md-12" for="first_name">{{LANG first_name}}</label>
 		<div class="col-md-12">
@@ -8,11 +16,13 @@
 		</div>
 	</div>
 	<!-- Text input-->
+
 	<div class="form-group">
 		<label class="col-md-12" for="last_name">{{LANG last_name}}</label>
 		<div class="col-md-12">
 			<input id="last_name" name="last_name" type="text" placeholder="" class="form-control input-md" value="{{USER last_name}}">
 		</div>
+	</div>
 	</div>
 	<!-- Textarea-->
 	<div class="form-group">
@@ -21,7 +31,6 @@
 			<textarea name="about" id="about" cols="20" class="form-control" rows="5">{{USER about_decoded}}</textarea>
 		</div>
 	</div>
-	<hr>
 	<!-- Text input-->
 	<div class="form-group">
 		<label class="col-md-12" for="facebook">{{LANG facebook}}</label>
@@ -55,7 +64,7 @@
         <label class="col-md-12" for="geo_blocking">{{LANG fav_category}}</label>
         <div class="col-md-12">
             <div class="form-group-rs" id="geo_blocking">
-            <select class="form-control selectpicker show-menu-arrow show-tick" multiple name="fav_category[]" data-live-search="true" title="{{LANG fav_category}}" data-actions-box="true">
+            <select class="selectpicker show-menu-arrow show-tick fav_cats" multiple name="fav_category[]" data-live-search="true" title="{{LANG fav_category}}" data-actions-box="true">
                 <?php 
                 foreach ($pt->categories as $key => $name): 
                 if($key != 'other'){

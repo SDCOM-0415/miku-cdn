@@ -44,6 +44,9 @@
   echo PT_LoadPage('live/agora');
 } ?>
 <script type="text/javascript">
+  <?php if ($pt->config->live_video == 1 && $pt->config->amazone_s3_2 == 1 && $pt->config->live_video_save != 1) { ?>
+    console.error("Creating a live stream that cloud recording is not enabled.");
+  <?php } ?>
   <?php //if ($pt->config->live_chat == 'on') { ?>
   function LiveChating(type) {
     post_id = $('#live_post_id').val();

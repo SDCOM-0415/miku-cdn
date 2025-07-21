@@ -68,6 +68,10 @@
           relative_urls: false,
           remove_script_host: false,
           height:500,
+		  <?php if ($pt->mode == 'night' || $pt->config->night_mode == 'night'): ?>
+			skin: "oxide-dark",
+			content_css: "dark",
+			<?php endif; ?>
           toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image  uploadImages |  preview media fullpage | forecolor backcolor emoticons',
           plugins: [
               'advlist autolink link image  lists charmap  preview hr anchor pagebreak spellchecker',

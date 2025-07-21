@@ -53,7 +53,7 @@
                 </select>
             </div>
         </div>
-        <?php if ($pt->config->donate_system == 'on') { ?>
+        <?php if ($pt->config->donate_system == 'on' && canUseFeature($pt->settings->id,'who_can_donate')) { ?>
          <!-- Text input-->
         <div class="form-group col-lg-6">
             <label class="col-md-12" for="donation_paypal_email">{{LANG donation_paypal_email}}</label>

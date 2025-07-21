@@ -74,13 +74,13 @@
 						<label for="rating">{{LANG rating}} {{LANG rating_btween}}</label>
 					</div>
 				</div>
-				<?php if ((($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'off') || ($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'on' && $pt->user->monetization == '1')) && $pt->config->sell_videos_system == 'on') { ?>
+				<?php if ($pt->config->sell_videos_system == 'on') { ?>
 					<div class="pp_mat_input">
 						<input id="mySingleFieldTags_" name="buy_price" type="text" placeholder=" " value="<?php echo($pt->video->sell_video) ?>">
 						<label for="buy_price">{{LANG set_p_v}}</label>
 					</div>
 				<?php } ?>
-				<?php if ((($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'off') || ($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'on' && $pt->user->monetization == '1')) && $pt->config->rent_videos_system == 'on') { ?>
+				<?php if ($pt->config->rent_videos_system == 'on') { ?>
 					<div class="pp_mat_input">
 						<input id="mySingleFieldTags_movie" name="movie_rent_price" type="text" placeholder=" " value="<?php echo $pt->video->rent_price ?>">
 						<label for="movie_rent_price">{{LANG rent_price}}</label>
@@ -88,7 +88,29 @@
 					</div>
 				<?php } ?>
 				<input type="hidden" name="is_movie" class="is_movie" value="1">
+				<?php if (PT_IsAdmin()) { ?>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>{{LANG featured}}</label>
+							<div class="pt_vdo_cstm_radio">
+								<input type="radio" id="featuredm1" name="featured_movie" value="1" <?php echo ($pt->video->featured_movie == 1) ? 'checked' : ''  ?>>
+								<label for="featuredm1">Yes</label>
+							</div>
+							<div class="pt_vdo_cstm_radio">
+								<input type="radio" id="featured0" name="featured_movie" value="0" <?php echo ($pt->video->featured_movie == 0) ? 'checked' : ''  ?>>
+								<label for="featured0">No</label>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
 			<?php } else { ?>
+				<?php if ($pt->editLink) { ?>
+					<div class="pp_mat_input">
+						<input id="url" name="url" type="text" oninput="fetchVideoUrl(this)">
+						<label for="url">{{LANG video_url}}</label>
+						<span class="help-block">{{LANG url_desc}}, <?php echo ($pt->config->facebook_import == 'on') ? 'Facebook, ': '';?>mp4<?php echo ($pt->config->ok_import == 'on') ? ',ok.ru': '';?><?php echo ($pt->config->tiktok_import == 'on') ? ',TikTok': '';?><?php echo ($pt->config->youtube_short == 'on') ? ',' . $lang_array['youtube_short']: '';?><?php echo ($pt->config->instagram_import == 'on') ? ',' . $lang_array['instagram']: '';?><?php echo ($pt->config->embed_videos == 'on') ? ',' . $lang_array['can_embed_website']: '';?></span>
+					</div>
+				<?php } ?>
 				<div class="pp_mat_input">
 					<input id="title" name="title" type="text" value="{{TITLE}}" placeholder=" ">
 					<label for="title">{{LANG video_title}}</label>
@@ -223,16 +245,13 @@
 				</div>
 				<?php if ($pt->video->is_short != 1) { ?>
 				<?php if (($pt->config->sell_videos_system == 'on' && $pt->config->who_sell == 'pro_users' && ($pt->user->is_pro || $pt->user->admin)) || ($pt->config->sell_videos_system == 'on' && $pt->config->who_sell == 'users') ) { ?>
-				<?php if ((($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'off') || ($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'on' && $pt->user->monetization == '1')) && $pt->config->sell_videos_system == 'on') { ?>
 					<div class="pp_mat_input">
 						<input id="mySingleFieldTags" name="set_p_v" type="text" placeholder=" " value="<?php echo $pt->video->sell_video ?>">
 						<label for="set_p_v">{{LANG set_p_v}}</label>
 						<span class="help-block"><?php if($pt->config->admin_com_sell_videos > 0){ ?>{{LANG p_m_than_}} <?php echo($pt->config->admin_com_sell_videos) ?><?php }?></span>
 					</div>
 				<?php } ?>
-				<?php } ?>
-				<?php if (($pt->config->rent_videos_system == 'on' && $pt->config->who_sell == 'pro_users' && ($pt->user->is_pro || $pt->user->admin)) || ($pt->config->rent_videos_system == 'on' && $pt->config->who_sell == 'users') ) { ?>
-				<?php if ((($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'off') || ($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'on' && $pt->user->monetization == '1')) && $pt->config->rent_videos_system == 'on') { ?>
+				<?php if ($pt->config->rent_videos_system == 'on') { ?>
 					<div class="pp_mat_input">
 						<input id="mySingleFieldTags" name="rent_price" type="text" placeholder=" " value="<?php echo $pt->video->rent_price ?>">
 						<label for="rent_price">{{LANG rent_price}}</label>
@@ -240,10 +259,10 @@
 					</div>
 				<?php } ?>
 				<?php } ?>
-				<?php } ?>
 			<?php } ?>
 			<?php if ($pt->video->is_short != 1) { ?>
 			<?php if ((($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'off') || ($pt->config->usr_v_mon == 'on' && $pt->config->user_mon_approve == 'on' && $pt->user->monetization == '1')) && $pt->user->video_mon == '1') { ?>
+			<div class="col-md-6">
 				<div class="form-group">
 					<label>{{LANG monetization}}</label>
 					<div class="pt_vdo_cstm_radio">
@@ -255,12 +274,13 @@
 						<label for="monetization0">{{LANG disable}}</label>
 					</div>
 				</div>
+			</div>
 			<?php } ?>
 			<?php if ($pt->config->restrict_embedding_system == 'on') { ?>
 				<div class="form-group">
 					<label>{{LANG restrict_embedding}}</label>
 					<div class="pt_vdo_cstm_radio">
-						<input type="radio" id="embedding" name="embedding" value="yes" <?php echo ($pt->video->embedding == 1) ? 'checked' : ''  ?>>
+						<input type="radio" id="embedding1" name="embedding" value="yes" <?php echo ($pt->video->embedding == 1) ? 'checked' : ''  ?>>
 						<label for="embedding1">{{LANG yes}}</label>
 					</div>
 					<div class="pt_vdo_cstm_radio">
@@ -304,6 +324,23 @@
 </div>
 
 <script>
+	<?php if ($pt->editLink) { ?>
+	function fetchVideoUrl(self) {
+		$.post('{{CONFIG site_url}}/aj/fetch-video', {link: $(self).val(),video_id:"{{ID}}"}, function(data, textStatus, xhr) {
+			if (data.status == 200) {
+				$('.errors').addClass('hidden')
+	    		$('#video-success').html("{{LANG video_url_changed_successfully}}");
+	    		setTimeout(function () {
+	    			$('#video-success').html("");
+	    		}, 2000);
+	    	} else {
+	    		$('#submit-btn').attr('disabled', false);
+	    	    $('#submit-btn').html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> {{LANG publish}}');
+	    		$('.errors').removeClass('hidden').html(data.message);
+	    	}
+		});
+	}
+	<?php } ?>
 	$(document).on('change', '#privacy', function(event) {
 		event.preventDefault();
 		if ($(this).val() == 3) {

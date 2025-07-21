@@ -1,4 +1,4 @@
-<li class="user-list" data-id="{{ID}}" data-time="{{TTIME}}">
+<li class="user-list user_box_search_type" data-id="{{ID}}" data-time="{{TTIME}}">
     <a href="<?php echo ($pt->config->server == 'ajax') ? "{{LINK messages/{{USERNAME}}}}" : "{{LINK @{{USERNAME}}}}"?>" <?php if ($pt->config->server == 'ajax') { ?>  data-load="?link1=messages&id={{USERNAME}}"<?php } ?> data-id="{{ID}}">
         <div class="user-avatar">
             <img src="{{AVATAR}}" alt="user avatar">

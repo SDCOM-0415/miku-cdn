@@ -1,26 +1,50 @@
-<div class="container login-page">
+<div class="new_margin_login">
+<div class="new_login_page login-page signup_page">
     <div class="login-form">
-        <h4>{{LANG lets_get_started}}</h4>
-    	<form action="{{LINK register}}" method="POST">
+    	<div class="start_free">
+    		{{LANG start_for_free}}
+    	</div>
+        <h4>{{LANG create_new_account}}<span>.</span></h4>
+        <div class="new-here">
+			{{LANG already_have_account}} <a class="new_link" href="{{LINK login}}">{{LANG login_}}</a>
+		</div>
+		<div class="login-page-width">
+    	<form action="{{LINK register}}" method="POST" autocomplete="off">
     	    <div class="errors form-group errors_alert">{{ERRORS}}</div>
     	     <div class="errors success form-group">{{SUCCESS}}</div>
     	     <?php if ($pt->config->auto_username == 'on') { ?>
-    	     	<div class="form-group">
-					<input type="text" name="first_name" id="first_name" placeholder="{{LANG first_name}}" required>
-				</div>
-    	     	<div class="form-group">
-					<input type="text" name="last_name" id="last_name" placeholder="{{LANG last_name}}" required>
+    	     	<div class="flex_space">
+	    	     	<div class="form-group">
+						<input type="text" name="first_name" id="first_name" placeholder=" " required>
+						<label>{{LANG first_name}}</label>
+					</div>
+	    	     	<div class="form-group">
+						<input type="text" name="last_name" id="last_name" placeholder=" " required>
+						<label>{{LANG last_name}}</label>
+					</div>
 				</div>
     	     <?php }else{ ?>
+    	     <div class="flex_space">
     	     	<div class="form-group">
-					<input type="text" name="username" id="username" placeholder="{{LANG username}}" required value="{{USERNAME}}">
+					<input type="text" name="username" autocomplete="off" id="username" placeholder=" " required value="{{USERNAME}}">
+					<label>{{LANG username}}</label>
 				</div>
+				<div class="form-group">
+					<select name="gender" id="gender" required>
+						<option value="male">{{LANG male}}</option>
+						<option value="female">{{LANG female}}</option>
+					</select>
+					<label>{{LANG gender}}</label>
+				</div>
+			</div>
     	     <?php } ?>
 			<div class="form-group">
-				<input type="text" name="email" id="email" placeholder="{{LANG email_address}}" required value="{{EMAIL}}">
+				<input type="text" name="email" id="email" placeholder=" " required value="{{EMAIL}}">
+				<label>{{LANG email_address}}</label>
 			</div>
 			<div class="form-group">
-				<input type="password" name="password" id="password" placeholder="{{LANG password}}" required>
+				<input type="password" name="password" id="password" placeholder=" " required>
+				<label>{{LANG password}}</label>
 				<?php if ($pt->config->password_complexity_system == 1) { ?>
 					<ul class="list-unstyled helper-text">
 						<li class="length">{{LANG least_characters}}</li>
@@ -32,37 +56,33 @@
 				<?php } ?>
 			</div>
 			<div class="form-group">
-				<input type="password" name="c_password"  id="c_password" placeholder="{{LANG confirm_password}}" required>
+				<input type="password" name="c_password"  id="c_password" placeholder=" " required>
+				<label>{{LANG confirm_password}}</label>
 			</div>
-			<div class="form-group">
-				<select name="gender" id="gender" required>
-					<option value="male">{{LANG male}}</option>
-					<option value="female">{{LANG female}}</option>
-				</select>
-			</div>
+			
 			{{CUSTOM_FIELDS}}
-			<div class="terms" style="color: #fff">
-		      <label for="accept_terms" style="font-size: 12px; cursor: pointer;"><input type="checkbox" style="float: left; width: auto; display: inline-block; margin-right: 5px; margin-top: 2px;" name="accept_terms" id="accept_terms"> 
-		       {{LANG terms_agreement}}
-		       <a style="color: #fff; text-decoration: underline;" href="{{LINK terms/terms}}">{{LANG terms_of_use}}</a> & <a href="{{LINK terms/privacy-policy}}" style="color: #fff; text-decoration: underline;">{{LANG privacy_policy}}</a>
-		       </label>
-		       <div class="clear"></div>
-		     </div>
+			<div class="pt_vdo_cstm_radio">
+				<input type="checkbox" name="accept_terms" id="accept_terms">
+				<label for="accept_terms">{{LANG terms_agreement}} <a href="{{LINK terms/terms}}">{{LANG terms_of_use}}</a> & <a href="{{LINK terms/privacy-policy}}">{{LANG privacy_policy}}</a></label>
+			</div>
 
 			<div class="recaptcha">{{RECAPTCHA}}</div>
-			<div class="form-group">
-				<input type="submit" class="button" value ="{{LANG sign_up}}">
+			<div class="flex_space-signup mt-20">
+				<a href="{{LINK login}}">
+					<input type="button" class="button grey" value ="{{LANG login_}}">
+				</a>
+				<input type="submit" class="button main" value ="{{LANG sign_up}}">
 			</div>
-			<div class="new-here text-center">
-				{{LANG already_have_account}} <a class="dec" href="{{LINK login}}">{{LANG login_}}</a>
-			</div>
+			
 			<?php if (isset($_GET['invite'])): ?>
 				<input type="text" class="hidden" value="<?php echo $_GET['invite']; ?>" name="invited">
 			<?php endif; ?>
 		</form>
+		</div>
     </div>    
 </div>
-<ul class="bg-bubbles">
+</div>
+<!-- <ul class="bg-bubbles">
 	<li></li>
 	<li></li>
 	<li></li>
@@ -75,7 +95,10 @@
 	<li></li>
 	<li></li>
 	<li></li>
-</ul>
+</ul> -->
+<div class="login_path">
+	<img src="{{CONFIG theme_url}}/img/login_line.svg">
+</div>
 <script>
 <?php if ($pt->config->password_complexity_system == 1) { ?>
 
@@ -213,10 +236,28 @@ $(function() {
 });
 </script>
 <style>
-.bg-bubbles {
+	.navbar-fixed-top {
+		position: unset;
+	} 
+	.navbar-right, .navbar-left{
+		display: none !important;
+	}
+	
+/*.bg-bubbles {
   background: -webkit-linear-gradient(top left, #{{COLOR1}} 0%, #{{COLOR2}} 100%);
   background: linear-gradient(to bottom right, #{{COLOR1}} 0%, #{{COLOR2}} 100%);
+}*/
+	nav.navbar-findcond .logo-img {
+		margin-top: 5% !important;
+    margin-left: 6% !important;
+    max-width: none;
+	}
+	nav.navbar-findcond .logo-img img {
+    width: 100%;
+    max-width: 153px;
+    max-height: 48px;
 }
+
 .login-page {
 	margin-top: 150px;
 }

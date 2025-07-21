@@ -12,9 +12,13 @@
 		<a href="{{URL}}" data-load="?link1=watch&id={{V_ID}}">{{TITLE}}</a>
 	</div>
 	<div class="vid_pub_info">
-		<a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}"><span class="video-publisher"><img src="{{USER avatar}}"> {{USER_NAME}}</span></a>
-		<span class="bold">|</span>
-		<span class="video-views">{{VIEWS}} {{LANG views}}</span>
+		<?php /* ?>
+		<img src="{{USER avatar}}"> 
+		<?php */ ?>
+		<div class="sidebar_video_bottom">
+			<span class="video-views">{{VIEWS}} {{LANG views}} . {{TIME}}</span>
+			<a href="{{USER url}}" data-load="?link1=timeline&id={{USER username}}"><span class="video-publisher">{{USER_NAME}}</span></a>
+		</div>
 	</div>
 	<div class="clear"></div>
 </div>

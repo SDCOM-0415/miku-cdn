@@ -26,22 +26,99 @@
 			</div>
 			<hr>
 			<div class="row pt_balance_row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<div class="form-group">
-						<label class="col-md-12">PayPal E-mail</label>
+						<label class="col-md-12">{{LANG withdraw_method}}</label>
 						<div class="col-md-12">
-							<input type="email" class="form-control input-md" value="{{ME email}}" name="email">
+                            <select id="withdraw_method" name="withdraw_method" class="form-control" onchange="ShowWithdrawMethod(this)">
+                                <?php 
+                                $first = 0;
+                                foreach ($pt->config->withdrawal_payment_method as $key => $value) { 
+                                    if ($value == 1) {
+                                        if ($first == 0) {
+                                            $first = $key;
+                                        }
+                                        if ($key != 'custom') { ?>
+                                            <option value="<?php echo $key; ?>"><?php echo $lang_array[$key]; ?></option>
+                                <?php   }elseif(!empty($pt->config->custom_name)){ ?>
+                                        <option value="<?php echo $key; ?>"><?php echo $pt->config->custom_name; ?></option>
+                                <?php }}} ?>
+                            </select>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-md-12">{{LANG amount}} ({{LANG min}} 50: {{CONFIG payment_currency}})</label>
-						<div class="col-md-12">
-							<input type="number" class="form-control input-md" placeholder="0.00" name="amount">
-						</div>
-					</div>
-				</div>
+                <div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG amount}} ({{LANG min}} {{CONFIG m_withdrawal}}: {{CONFIG payment_currency}})</label>
+                            <div class="col-md-12">
+                                <input type="number" class="form-control input-md" placeholder="0.00" name="amount">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="paypal_withdrawal" <?php echo($first == 'paypal' ? '' : 'style="display: none;"'); ?>>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG paypal_email}}</label>
+                            <div class="col-md-12">
+                                <input type="email" class="form-control input-md" value="{{ME email}}" name="paypal_email">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="transfer_to_withdrawal" <?php echo(($first == 'skrill' || $first == 'custom') ? '' : 'style="display: none;"'); ?>>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG transfer_to}}</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-md" name="transfer_to">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bank_withdrawal" <?php echo($first == 'bank' ? '' : 'style="display: none;"'); ?>>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG iban}}</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-md" name="iban">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG country}}</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-md" name="country">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG full_name}}</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-md" name="full_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG swift_code}}</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control input-md" name="swift_code">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-12">{{LANG address}}</label>
+                            <div class="col-md-12">
+                                <textarea name="address" type="text" class="form-control input-md"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
         <input type="hidden" name="hash_id" value="<?php echo PT_CreateSession()?>">
@@ -57,6 +134,23 @@
 </div>
 
 <script>
+function ShowWithdrawMethod(self) {
+    if ($(self).val() == 'bank') {
+        $('.paypal_withdrawal').slideUp();
+        $('.transfer_to_withdrawal').slideUp();
+        $('.bank_withdrawal').slideDown();
+    }
+    else if($(self).val() == 'paypal'){
+        $('.bank_withdrawal').slideUp();
+        $('.transfer_to_withdrawal').slideUp();
+        $('.paypal_withdrawal').slideDown();
+    }
+    else{
+        $('.bank_withdrawal').slideUp();
+        $('.transfer_to_withdrawal').slideDown();
+        $('.paypal_withdrawal').slideUp();
+    }
+}
     function SaveAds(self) {
         $.post('{{LINK aj/user/save_ads}}?hash=' + $('.main_session').val(), {total_ads: $(self).val(),user_id:{{USER id}}}, function(data, textStatus, xhr) {
             scrollToTop();

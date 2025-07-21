@@ -168,6 +168,7 @@
       beforeSend: function() {
 
         var mediafile = $("#ad-media").prop('files');
+        <?php if ($pt->config->max_upload > 0) { ?>
         if (mediafile[0].size > "{{CONFIG max_upload}}") {
            swal({
               title: '{{LANG error}}',
@@ -188,6 +189,7 @@
            });
            return false;
         }
+        <?php } ?>
 
         if ($("#ad-media").val()) {
           $(".user-ads-settings-alert").html($('.progress').clone(true).addClass('progress-clone').removeClass('hidden'));

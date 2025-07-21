@@ -25,9 +25,10 @@
     "subjectOf": {
         "@type": "VideoObject",
         "description": "<?php echo FilterStripTags($pt->get_video->markup_description); ?>",
-        "duration": "<?php echo $pt->get_video->duration; ?>",
+        "duration": "<?php echo time_to_iso8601_duration(strtotime($pt->get_video->duration)); ?>",
         "name": "<?php echo FilterStripTags($pt->get_video->title); ?>",
-        "thumbnail": "<?php echo $pt->get_video->thumbnail; ?>"
+        "thumbnailUrl": "<?php echo $pt->get_video->thumbnail; ?>",
+        "uploadDate": "<?php echo date('c',$pt->get_video->time); ?>"
     }
 }
 </script>

@@ -1,22 +1,26 @@
-l<div class="container login-page">
+<div class="new_margin_login">
+
+	<div class="new_login_page login-page">
     <div class="login-form">
     	<form action="{{LINK forgot_password}}" method="POST">
-    	    <h4>{{LANG reset_password}}</h4>
+    	    <h4>{{LANG reset_password}}<span>.</span></h4>
+			<div class="new-here">
+				{{LANG got_your_password}} <a class="new_link" href="{{LINK login}}">{{LANG login_}}</a>
+			</div>
     	    <div class="errors form-group">{{ERRORS}}</div>
     	    <div class="errors success form-group">{{SUCCESS}}</div>
 			<div class="form-group">
-				<input type="text" name="email" id="email" placeholder="{{LANG your_email_address}}" required value="">
+				<input type="text" name="email" placeholder=" " id="email" required value="">
+				<label>{{LANG your_email_address}}</label>
 			</div>
-			<div class="form-group">
-				<input type="submit" class="button" value ="{{LANG request_new_password}}">
-			</div>
-			<div class="new-here text-center">
-				{{LANG got_your_password}} <a class="dec" href="{{LINK login}}">{{LANG login_}}</a>
+			<div class="" style="margin-bottom: 30px;">
+				<input type="submit" class="button main" value ="{{LANG request_new_password}}">
 			</div>
 		</form>
     </div>    
 </div>
-<ul class="bg-bubbles">
+</div>
+<!-- <ul class="bg-bubbles">
 	<li></li>
 	<li></li>
 	<li></li>
@@ -29,7 +33,10 @@ l<div class="container login-page">
 	<li></li>
 	<li></li>
 	<li></li>
-</ul>
+</ul> -->
+<div class="login_path">
+	<img src="{{CONFIG theme_url}}/img/login_line.svg">
+</div>
 <script>
 $(function() {
 	$('.button').on('click', function () {
@@ -40,9 +47,26 @@ $(function() {
 });
 </script>
 <style>
-.bg-bubbles {
+.navbar-right, .navbar-left{
+		display: none !important;
+	}
+	.navbar-fixed-top {
+		position: unset;
+	} 
+	
+/*.bg-bubbles {
   background: -webkit-linear-gradient(top left, #{{COLOR1}} 0%, #{{COLOR2}} 100%);
   background: linear-gradient(to bottom right, #{{COLOR1}} 0%, #{{COLOR2}} 100%);
+}*/
+	nav.navbar-findcond .logo-img {
+		margin-top: 5% !important;
+    margin-left: 6% !important;
+    max-width: none;
+	}
+	nav.navbar-findcond .logo-img img {
+    width: 100%;
+    max-width: 153px;
+    max-height: 48px;
 }
 .login-form input[type=submit] {
 	color: #{{COLOR1}} !important;

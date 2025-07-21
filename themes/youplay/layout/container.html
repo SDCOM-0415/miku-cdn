@@ -3,8 +3,8 @@
    <head>
       <meta charset="UTF-8">
       <title>{{CONTAINER_TITLE}}</title>
-      <meta name="title" content="{{CONTAINER_TITLE}}">
-      <meta name="description" content="{{CONTAINER_DESC}}">
+      <meta name="title" content="{{CONTAINER_TITLE_DE}}">
+      <meta name="description" content="{{CONTAINER_DESC_DE}}">
       <meta name="keywords" content="{{CONTAINER_KEYWORDS}}">
       <?php if (!empty($pt->video_privacy)) { ?>
       <meta name="robots" content="noindex">
@@ -20,11 +20,12 @@
           <link rel="canonical" href="<?php echo($pt->page_url_); ?>"/>
       <?php } ?>
       {{OG_METATAGS}}
+      <link rel="shortcut icon" type="image/png" href="{{CONFIG theme_url}}/img/icon.png"/>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/jquery-ui.min.css?version={{CONFIG version}}">
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/jquery.tagit.css?version={{CONFIG version}}">
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/font-awesome-4.7.0/css/font-awesome.min.css?version={{CONFIG version}}">
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/twemoji-awesome.css?version={{CONFIG version}}">
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css?version={{CONFIG version}}">
+      <link rel="stylesheet" href="{{CONFIG theme_url}}/css/bootstrap-glyphicons.css?version={{CONFIG version}}">
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/bootstrap.min.css?version={{CONFIG version}}">
       <link rel="stylesheet" href="{{CONFIG theme_url}}/js/lib/sweetalert2/dist/sweetalert2.min.css?version={{CONFIG version}}">
       <link rel="stylesheet" href="{{CONFIG theme_url}}/js/lib/notifIt/notifIt/css/notifIt.min.css?version={{CONFIG version}}">
@@ -33,8 +34,8 @@
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/night-mode.css?version={{CONFIG version}}" class="night-mode-css">
       <?php endif; ?>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/custom.style.css?version={{CONFIG version}}">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,500" rel="stylesheet">
+      <link href="{{CONFIG theme_url}}/css/material.css?version={{CONFIG version}}" rel="stylesheet" type="text/css">
+      <link href="{{CONFIG theme_url}}/css/roboto.css?version={{CONFIG version}}" rel="stylesheet">
       <script src="{{CONFIG theme_url}}/js/jquery-3.min.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/js/jquery-ui.min.js?version={{CONFIG version}}"></script>
       <script type="text/javascript" src="{{CONFIG theme_url}}/js/jquery.form.min.js?version={{CONFIG version}}"></script>
@@ -43,20 +44,19 @@
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/css/fluidplayer/fluidplayer.min.css?version={{CONFIG version}}" type="text/css"/>
       <script src="{{CONFIG theme_url}}/player/js/fluidplayer/fluidplayer.min.js?version={{CONFIG version}}"></script>
       <?php }elseif ($pt->config->player_type == 'videojs') { ?>
-      <!-- <script src="http://imasdk.googleapis.com/js/sdkloader/ima3.js?version={{CONFIG version}}"></script> -->
       <link href="{{CONFIG theme_url}}/player/css/video_js/video-js.css?version={{CONFIG version}}" rel="stylesheet">
       <link href="{{CONFIG theme_url}}/player/css/video_js/videojs-resolution-switcher.css?version={{CONFIG version}}" rel="stylesheet">
       <link href="{{CONFIG theme_url}}/player/css/video_js/videojs.ima.css?version={{CONFIG version}}" rel="stylesheet">
       <?php }elseif ($pt->config->player_type == 'plyr') { ?>
-      <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js?version={{CONFIG version}}"></script>
-      <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css?version={{CONFIG version}}" />
+      <script src="{{CONFIG theme_url}}/js/plyr.polyfilled.js?version={{CONFIG version}}"></script>
+      <link rel="stylesheet" href="{{CONFIG theme_url}}/player/css/plyr.css?version={{CONFIG version}}" />
       <?php }?>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/css/mediaelementplayer.min.css?version={{CONFIG version}}" />
       <script src="{{CONFIG theme_url}}/player/js/mediaelement-and-player.min.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/css/mejs-dark.css?version={{CONFIG version}}" />
       <script src="{{CONFIG theme_url}}/js/lib/sweetalert2/dist/sweetalert2.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/js/lib/notifIt/notifIt/js/notifIt.min.js?version={{CONFIG version}}"></script>
-      <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css?version={{CONFIG version}}" rel="stylesheet">
+      <link href="{{CONFIG theme_url}}/css/bootstrap-toggle.min.css?version={{CONFIG version}}" rel="stylesheet">
       <script type="text/javascript" src="{{CONFIG theme_url}}/js/bootstrap.min.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/css/bootstrap-select.min.css?version={{CONFIG version}}">
       <script src="{{CONFIG theme_url}}/js/bootstrap-select.min.js?version={{CONFIG version}}"></script>
@@ -73,7 +73,7 @@
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/jump/jump-forward.min.css?version={{CONFIG version}}" />
       <script src="{{CONFIG theme_url}}/player/plugins/quality/quality.min.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/quality/quality.min.css?version={{CONFIG version}}" />
-      <script src="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/renderers/facebook.min.js?version={{CONFIG version}}"></script>
+      <script src="{{CONFIG theme_url}}/js/facebook.min.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/player/plugins/context-menu/context-menu.min.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/player/plugins/context-menu/context-menu-i18n.js?version={{CONFIG version}}"></script>
       <link rel="stylesheet" href="{{CONFIG theme_url}}/player/plugins/context-menu/context-menu.min.css?version={{CONFIG version}}" />
@@ -87,18 +87,14 @@
          <script src="{{CONFIG theme_url}}/js/highcharts/exporting.js?version={{CONFIG version}}"></script> -->
       <?php if (!IS_LOGGED && $pt->config->recaptcha == 'on') { ?>
       <?php } ?>
-      <script src="https://cdn.jsdmirror.com/ajax/libs/socket.io/2.0.4/socket.io.js?version={{CONFIG version}}"></script>
-      <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css?version={{CONFIG version}}" />
-      <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js?version={{CONFIG version}}"></script>
-      <?php if (!empty($pt->config->google)) { ?>
-      <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-         ga('create', '{{CONFIG google}}', 'auto');
-         ga('send', 'pageview');
-      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js?version={{CONFIG version}}"></script>
+      <link rel="stylesheet" href="{{CONFIG theme_url}}/css/swiper-bundle.min.css?version={{CONFIG version}}" />
+      <script src="{{CONFIG theme_url}}/js/swiper-bundle.min.js?version={{CONFIG version}}"></script>
+      <?php if (!empty($pt->config->google)) { echo htmlspecialchars_decode($pt->config->google); } ?>
+      <?php if (!empty($pt->config->google_vignette)) { echo htmlspecialchars_decode($pt->config->google_vignette); } ?>
+      <script src="{{CONFIG theme_url}}/js/plupload.full.min.js?version={{CONFIG version}}"></script>
+      <?php if ($pt->config->braintree_payment == 'yes') { ?>
+        <script src="https://js.braintreegateway.com/web/dropin/1.36.0/js/dropin.js"></script>
       <?php } ?>
       <script>
          function RunLiveAgora(channelName,DIV_ID,token) {
@@ -210,6 +206,8 @@
       <?php if ($pt->config->live_video == 1 && !empty($pt->config->agora_app_id)) { ?>
       <script src="{{CONFIG theme_url}}/js/agora.js?version={{CONFIG version}}"></script>
       <?php } ?>
+      <?php if($pt->config->plus_login == 'on'): ?>
+      <?php endif; ?>
    </head>
    <script type="text/javascript">
         window.UpdateChatU = 0;
@@ -242,14 +240,14 @@
                   data = JSON.parse($(data_html).filter('#json-data').val());
                   if (data.is_movie == true) {
                     $('.toggle-mode').hide();
-                    $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo-light.png');
+                    $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo-light.png?cache=<?php echo($pt->config->logo_cache) ?>');
                   }
                   else{
                     if ($('#toggle-mode').prop( "checked" ) === true) {
-                      $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo-light.png');
+                      $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo-light.png?cache=<?php echo($pt->config->logo_cache) ?>');
                     }
                     else{
-                      $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo.png');
+                      $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo.png?cache=<?php echo($pt->config->logo_cache) ?>');
                     }
                     $('.toggle-mode').show();
                   }
@@ -600,7 +598,7 @@
       <?php } ?>
       {{EXTRA_JS}}
       <script type="text/javascript" src="{{CONFIG theme_url}}/js/script.js?version={{CONFIG version}}"></script>
-      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js?version={{CONFIG version}}"></script>
+      <script src="{{CONFIG theme_url}}/js/bootstrap-toggle.min.js?version={{CONFIG version}}"></script>
       <script src="{{CONFIG theme_url}}/js/footer.js?version={{CONFIG version}}"></script>
       <link rel="" ="">
       <script>
@@ -627,11 +625,11 @@
                    href:'{{CONFIG theme_url}}/css/night-mode.css',
                    class:'night-mode-css'
                  }).insertAfter('link#style-css');
-                 $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo-light.png');
+                 $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo-light.png?cache=<?php echo($pt->config->logo_cache) ?>');
                }
                else{
                  $(".night-mode-css").remove();
-                 $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo.png');
+                 $('.logo-img img').attr('src', '{{CONFIG theme_url}}/img/logo.png?cache=<?php echo($pt->config->logo_cache) ?>');
                }
 
 
@@ -653,7 +651,7 @@
          <source src="{{CONFIG theme_url}}/mp3/unconvinced.ogg" type="audio/ogg">
       </audio>
       <?php } ?>
-      <script src="//cdn.jsdmirror.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js?version={{CONFIG version}}"></script>
+      <script src="{{CONFIG theme_url}}/js/cookieconsent.min.js?version={{CONFIG version}}"></script>
       <script>
          window.addEventListener("load", function(){
          window.cookieconsent.initialise({
@@ -798,7 +796,7 @@
          }
          <?php if (empty($_COOKIE['r']) || !in_array(base64_decode($_COOKIE['r']), $pt->continents)) { ?>
          $.ajax({
-           url: 'https://api.hydun.com/api/ip.php',
+           url: "https://extreme-ip-lookup.com/json/?key=<?php echo($pt->config->lookup_key) ?>",
            type: 'GET',
            dataType: 'json'
          })
@@ -897,6 +895,7 @@
                         </span>
                      </button>
                   </h3>
+                  <div class="pay-go-pro-alert"></div>
                </div>
                <div class="payment_method"></div>
             </div>
@@ -927,128 +926,139 @@
          </div>
       </div>
 	  
-	  <?php if (empty($_COOKIE['lang_modal']) && !IS_LOGGED && $pt->page != 'login' && $pt->config->lang_modal == 'on') { ?>
-      <script type="text/javascript">
-         $('#select-language').modal('show');
-         setCookie('lang_modal','1', 10);
-      </script>
-      <?php } ?>
-      <?php if ($pt->config->paystack_payment == 'yes') { ?>
-      <div class="modal fade" id="paystack_wallet_modal" role="dialog" data-keyboard="false" style="overflow-y: auto;">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-                           <line x1="18" y1="6" x2="6" y2="18"></line>
-                           <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                     </span>
-                  </button>
-                  <h4 class="modal-title">{{LANG paystack}}</h4>
-               </div>
-               <form class="form form-horizontal" method="post" id="paystack_wallet_form" action="#">
-                  <div class="modal-body twocheckout_modal">
-                     <div id="paystack_wallet_alert"></div>
-                     <div class="clear"></div>
-                     <div class="sun_input col-md-12">
-                        <label class="plr15" for="paystack_wallet_email">{{LANG email}}</label>
-                        <input id="paystack_wallet_email" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG email}}" value="<?php echo($pt->user->email) ?>">
-                     </div>
-                     <div class="clear"></div>
-                  </div>
-                  <div class="clear"></div>
-                  <div class="modal-footer">
-                     <div class="ball-pulse">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                     </div>
-                     <input id="paystack_type" name="paystack_type" type="hidden" value="">
-                     <input id="paystack_video_id" name="paystack_video_id" type="hidden" value="">
-                     <input id="paystack_price" name="paystack_price" type="hidden" value="">
-                     <input id="paystack_user_id" name="paystack_user_id" type="hidden" value="">
-                     <button type="button" class="btn btn-main" id="paystack_btn" onclick="InitializeWalletPaystack()">{{LANG pay}}</button>
-                  </div>
-               </form>
-            </div>
-         </div>
-      </div>
-      <?php } ?>
-      <?php if ($pt->config->cashfree_payment == 'yes') { ?>
-      <div class="modal fade" id="cashfree_modal_box" tabindex="-1" role="dialog" aria-hidden="true">
-         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content add_money_modal add_address_modal">
-               <h5 class="modal-title text-center">{{LANG Cashfree}}</h5>
-               <div class="modal-body">
-                  <div id="cashfree_alert"></div>
-                  <form id="cashfree_form" method="post">
-                     <div class="form-group">
-                        <label class="plr15" for="cashfree_name">{{LANG name}}</label>
-                        <input class="form-control shop_input" type="text" placeholder="{{LANG name}}" value="{{ME name}}" id="cashfree_name" name="name">
-                     </div>
-                     <div class="form-group">
-                        <label class="plr15" for="cashfree_email">{{LANG email}}</label>
-                        <input class="form-control shop_input" type="email" placeholder="{{LANG email}}" value="{{ME email}}" id="cashfree_email" name="email">
-                     </div>
-                     <div class="form-group">
-                        <label class="plr15" for="cashfree_phone">{{LANG phone_number}}</label>
-                        <input class="form-control shop_input" type="text" placeholder="{{LANG phone_number}}" id="cashfree_phone" name="phone">
-                     </div>
-                     <input id="cashfree_type" name="cashfree_type" type="hidden" value="">
-                     <input id="cashfree_video_id" name="cashfree_video_id" type="hidden" value="">
-                     <input id="cashfree_price" name="cashfree_price" type="hidden" value="">
-                     <input id="cashfree_user_id" name="cashfree_user_id" type="hidden" value="">
-                     <div class="modal-footer">
-                        <button class="btn btn-main" id="cashfree_button" type="button" onclick="InitializeCashfree()">{{LANG pay}}</button>
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{LANG cancel}}</button>
-                     </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div>
-      <?php } ?>
-      <?php if ($pt->config->razorpay_payment == 'yes') { ?>
-      <div class="modal fade" id="razorpay_modal_box" tabindex="-1" role="dialog" aria-hidden="true">
-         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content add_money_modal add_address_modal">
-               <h5 class="modal-title text-center">{{LANG Razorpay}}</h5>
-               <div class="modal-body">
-                  <div id="razorpay_alert"></div>
-                  <form id="razorpay_form" method="post">
-                     <div class="form-group">
-                        <label class="plr15" for="razorpay_name">{{LANG name}}</label>
-                        <input class="form-control shop_input" type="text" placeholder="{{LANG name}}" value="{{ME name}}" id="razorpay_name" name="name">
-                     </div>
-                     <div class="form-group">
-                        <label class="plr15" for="razorpay_email">{{LANG email}}</label>
-                        <input class="form-control shop_input" type="email" placeholder="{{LANG email}}" value="{{ME email}}" id="razorpay_email" name="email">
-                     </div>
-                     <div class="form-group">
-                        <label class="plr15" for="razorpay_phone">{{LANG phone_number}}</label>
-                        <input class="form-control shop_input" type="text" placeholder="{{LANG phone_number}}" id="razorpay_phone" name="phone">
-                     </div>
-                     <input id="razorpay_type" name="razorpay_type" type="hidden" value="">
-                     <input id="razorpay_video_id" name="razorpay_video_id" type="hidden" value="">
-                     <input id="razorpay_price" name="razorpay_price" type="hidden" value="">
-                     <input id="razorpay_user_id" name="razorpay_user_id" type="hidden" value="">
-                     <div class="modal-footer">
-                        <button type="button" class="btn btn-main" onclick="SignatureRazorpay()" id="razorpay_button">{{LANG pay}}</button>
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{LANG cancel}}</button>
-                     </div>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div>
-      <script src="https://checkout.razorpay.com/v1/checkout.js?version={{CONFIG version}}"></script>
-      <?php } ?>
-      <?php if ($pt->config->iyzipay_payment == 'yes') { ?>
-      <div id="iyzipay_content"></div>
-      <?php }
-         echo PT_LoadPage('modals/wallet');
+	  <?php if (empty($_COOKIE
+    ['lang_modal']) && !IS_LOGGED && $pt->page != 'login' &&
+    $pt->config->lang_modal == 'on') { ?> <script type="text/javascript"> $
+    ('#select-language').modal('show'); setCookie('lang_modal','1', 10);
+    </script> <?php } ?> <?php if ($pt->config->paystack_payment == 'yes')
+    { ?> <div class="modal fade" id="paystack_wallet_modal" role="dialog"
+    data-keyboard="false" style="overflow-y: auto;"> <div
+    class="modal-dialog"> <div class="modal-content"> <div
+    class="modal-header"> <button type="button" class="close"
+    data-dismiss="modal" aria-label="Close"> <span aria-hidden="true"> <svg
+    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24
+    24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+    <line x1="18" y1="6" x2="6" y2="18"></line> <line x1="6" y1="6" x2="18"
+    y2="18"></line> </svg> </span> </button> <h4 class="modal-title">{
+    {LANG paystack}}</h4> </div> <form class="form form-horizontal"
+    method="post" id="paystack_wallet_form" action="#"> <div
+    class="modal-body twocheckout_modal"> <div
+    id="paystack_wallet_alert"></div> <div class="clear"></div> <div
+    class="sun_input col-md-12"> <label class="plr15"
+    for="paystack_wallet_email">{{LANG email}}</label> <input
+    id="paystack_wallet_email" type="text" class="form-control input-md"
+    autocomplete="off" placeholder="{{LANG email}}" value="<?php echo
+    ($pt->user->email) ?>"> </div> <div class="clear"></div> </div> <div
+    class="clear"></div> <div class="modal-footer"> <div class="ball-pulse">
+    <div></div> <div></div> <div></div> </div> <input id="paystack_type"
+    name="paystack_type" type="hidden" value=""> <input
+    id="paystack_video_id" name="paystack_video_id" type="hidden" value="">
+    <input id="paystack_price" name="paystack_price" type="hidden" value="">
+    <input id="paystack_user_id" name="paystack_user_id" type="hidden"
+    value=""> <button type="button" class="btn btn-main" id="paystack_btn"
+    onclick="InitializeWalletPaystack()">{{LANG pay}}</button> </div> </form>
+    </div> </div> </div> <?php } ?> <?php if
+    ($pt->config->cashfree_payment == 'yes') { ?> <div class="modal fade"
+    id="cashfree_modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document"> <div
+    class="modal-content add_money_modal add_address_modal"> <h5
+    class="modal-title text-center">{{LANG Cashfree}}</h5> <div
+    class="modal-body"> <div id="cashfree_alert"></div> <form
+    id="cashfree_form" method="post"> <div class="form-group"> <label
+    class="plr15" for="cashfree_name">{{LANG name}}</label> <input
+    class="form-control shop_input" type="text" placeholder="{{LANG name}}"
+    value="{{ME name}}" id="cashfree_name" name="name"> </div> <div
+    class="form-group"> <label class="plr15" for="cashfree_email">{{LANG email}}</label> <input class="form-control shop_input" type="email"
+    placeholder="{{LANG email}}" value="{{ME email}}" id="cashfree_email"
+    name="email"> </div> <div class="form-group"> <label class="plr15"
+    for="cashfree_phone">{{LANG phone_number}}</label> <input
+    class="form-control shop_input" type="text" placeholder="{{LANG phone_number}}" id="cashfree_phone" name="phone"> </div> <div class="row two_check_card">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" /></svg>
+                        <div class="sun_input col-xs-12">
+                            <input id="cashfree_card_number" name="card_number" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG card_number}}">
+                        </div>
+                        <div class="sun_input col-xs-4">
+                            <select id="cashfree_card_expiry_mm" name="card_expiry_mm" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG month}} (01)">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                        <div class="sun_input col-xs-4 no-padding-both">
+                            <select id="cashfree_card_expiry_yy" name="card_expiry_yy" type="text" class="form-control input-md" autocomplete="off" placeholder="{{LANG year}} (2019)">
+                                <?php for ($i=0; $i <= 15; $i++) {  ?>
+                                    <option value="<?php echo(date('y')+$i) ?>"><?php echo(date('Y')+$i) ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="sun_input col-xs-4">
+                            <input id="cashfree_card_cvv" name="card_cvv" type="text" class="form-control input-md" autocomplete="off" placeholder="CVC" maxlength="3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                        </div>
+                    </div><input
+    id="cashfree_type" name="cashfree_type" type="hidden" value=""> <input
+    id="cashfree_video_id" name="cashfree_video_id" type="hidden" value="">
+    <input id="cashfree_price" name="cashfree_price" type="hidden" value="">
+    <input id="cashfree_user_id" name="cashfree_user_id" type="hidden"
+    value=""> <div class="modal-footer"> <button class="btn btn-main"
+    id="cashfree_button" type="button" onclick="InitializeCashfree()">{{LANG pay}}</button> <button type="button" class="btn
+    btn-outline-secondary" data-dismiss="modal">{{LANG cancel}}</button>
+    </div> </form> </div> </div> </div> </div> <?php } ?> <?php if
+    ($pt->config->fluttewave_payment == 'yes') { ?> <div class="modal fade"
+    id="fluttewave_modal" role="dialog" data-keyboard="false"
+    style="overflow-y: auto;"> <div class="modal-dialog mat_box"> <div
+    class="modal-content"> <div class="modal-header"> <h4
+    class="modal-title">{{LANG flutterwave}}</h4> </div> <form class="form
+    form-horizontal" method="post" id="fluttewave_form" action="#"> <div
+    class="modal-body twocheckout_modal"> <div id="fluttewave_alert"></div>
+    <div class="clear"></div> <div class="sun_input col-md-12"> <input
+    id="fluttewave_email" type="text" class="form-control input-md"
+    autocomplete="off" placeholder="{{LANG email}}" value="{{ME email}}">
+    </div> <div class="clear"></div> </div> <div class="clear"></div> <div
+    class="modal-footer"> <div
+    class="ball-pulse"><div></div><div></div><div></div></div> <button
+    type="button" class="btn btn-main" id="fluttewave_btn"
+    onclick="SignatureFluttewave()">{{LANG pay}}</button> </div> </form>
+    </div> </div> </div> <?php } ?> <?php if
+    ($pt->config->razorpay_payment == 'yes') { ?> <div class="modal fade"
+    id="razorpay_modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document"> <div
+    class="modal-content add_money_modal add_address_modal"> <h5
+    class="modal-title text-center">{{LANG Razorpay}}</h5> <div
+    class="modal-body"> <div id="razorpay_alert"></div> <form
+    id="razorpay_form" method="post"> <div class="form-group"> <label
+    class="plr15" for="razorpay_name">{{LANG name}}</label> <input
+    class="form-control shop_input" type="text" placeholder="{{LANG name}}"
+    value="{{ME name}}" id="razorpay_name" name="name"> </div> <div
+    class="form-group"> <label class="plr15" for="razorpay_email">{
+    {LANG email}}</label> <input class="form-control shop_input" type="email"
+    placeholder="{{LANG email}}" value="{{ME email}}" id="razorpay_email"
+    name="email"> </div> <div class="form-group"> <label class="plr15"
+    for="razorpay_phone">{{LANG phone_number}}</label> <input
+    class="form-control shop_input" type="text" placeholder="{
+    {LANG phone_number}}" id="razorpay_phone" name="phone"> </div> <input
+    id="razorpay_type" name="razorpay_type" type="hidden" value=""> <input
+    id="razorpay_video_id" name="razorpay_video_id" type="hidden" value="">
+    <input id="razorpay_price" name="razorpay_price" type="hidden" value="">
+    <input id="razorpay_user_id" name="razorpay_user_id" type="hidden"
+    value=""> <div class="modal-footer"> <button type="button" class="btn
+    btn-main" onclick="SignatureRazorpay()" id="razorpay_button">{
+    {LANG pay}}</button> <button type="button" class="btn
+    btn-outline-secondary" data-dismiss="modal">{{LANG cancel}}</button>
+    </div> </form> </div> </div> </div> </div> <script
+    src="https://checkout.razorpay.com/v1/checkout.js?version={
+    {CONFIG version}}"></script> <?php } ?> <?php if
+    ($pt->config->iyzipay_payment == 'yes') { ?> <div
+    id="iyzipay_content"></div> <?php } echo PT_LoadPage('modals/wallet');
          ?>
       <script type="text/javascript">
          function HideCard(ad_date) {

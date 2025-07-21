@@ -466,3 +466,8 @@ body .pt_sec_nav_slide_prnt .swiper-button-prev {right: 0;left: auto;}
 .lang_select_modal ul{
 	padding: 20px 0 20px 20px;
 }
+
+.pt_blogcomm_combo .add-emoticons {
+	right: auto;
+    left: 105px;
+}
